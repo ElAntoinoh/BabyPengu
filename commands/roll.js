@@ -2,7 +2,7 @@ module.exports = {
     name: 'roll',
     description: 'Lance des dés',
 
-    execute( message, args ) {
+    execute( client, message, args ) {
         var resultat;
 
         switch ( args.length )
