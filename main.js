@@ -24,6 +24,8 @@ client.on('message', message => {
 
     if( !client.commands.has(command) ) return;
     client.commands.get(command).execute(message, args);
+
+    console.log(`${message.author.username} a utilisé la commande ${client.commands.get(command).name}.`);
 });
 
 client.login(TOKEN);
