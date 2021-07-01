@@ -1,6 +1,6 @@
-const fs = require("fs"); //pizza
+const fs = require("fs");
 const { Client, Collection } = require('discord.js');
-const { TOKEN, PREFIX } = require('./config');
+const { TOKEN, PREFIX } = require("C:\\\Users\\toino\\OneDrive\\Bureau\\config"); // "./config" si config.js est dans le même répertoire
 
 const client = new Client();
 client.commands = new Collection();
