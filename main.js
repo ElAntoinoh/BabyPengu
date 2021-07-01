@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("fs"); //pizza
 const { Client, Collection } = require('discord.js');
 const { TOKEN, PREFIX } = require('./config');
 
