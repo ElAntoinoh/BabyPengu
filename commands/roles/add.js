@@ -1,7 +1,7 @@
 module.exports.help = {
     name: 'add',
     description: 'Ajoute un ou plusieurs rôles.',
-}
+};
 
 module.exports.run = ( client, message, args ) => {
     args.forEach(roleName => {
@@ -19,4 +19,4 @@ module.exports.run = ( client, message, args ) => {
         else
             return message.channel.send("Je ne connais pas ce rôle :(");
     });
-}
+};

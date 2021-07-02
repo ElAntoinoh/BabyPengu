@@ -4,7 +4,7 @@ const deImg = new MessageAttachment("./assets/img/de.png");
 module.exports.help = {
     name: 'roll',
     description: 'Lance des dés',
-}
+};
 
 module.exports.run = ( client, message, args ) => {
     var resultat;
@@ -14,7 +14,7 @@ module.exports.run = ( client, message, args ) => {
         .attachFiles(deImg)
         .setThumbnail("attachment://de.png");
 
-    switch ( args.length )
+    switch( args.length )
     {
         case 0:
             embed.addField( "Lancer de 1 à 6 :", Math.floor( Math.random()*6 + 1 ) );
@@ -26,11 +26,11 @@ module.exports.run = ( client, message, args ) => {
 
         case 2:
             if( args[0] < args[1] )
-                embed.addField(`Lancer de ${args[0]} à ${args[1]} :`, Math.floor( Math.random()*( args[1] - args[0] + 1 ) + Number( args[0] ) ) );
+                embed.addField(`Lancer de ${args[0]} à ${args[1]} :`, Math.floor( Math.random()*( args[1] - args[0] + 1 ) + Number(args[0]) ) );
             else
-                embed.addField(`Lancer de ${args[1]} à ${args[0]} :`, Math.floor( Math.random()*( args[0] - args[1] + 1 ) + Number( args[1] ) ) );
+                embed.addField(`Lancer de ${args[1]} à ${args[0]} :`, Math.floor( Math.random()*( args[0] - args[1] + 1 ) + Number(args[1]) ) );
             break;
-    }
+    };
     
-    message.channel.send( embed );
-}
+    message.channel.send(embed);
+};

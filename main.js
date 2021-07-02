@@ -31,6 +31,6 @@ client.on('message', message => {
     console.log(`${message.author.username} a utilisé la commande ${client.commands.get(command).name}.`);
 });
 
-client.on( 'ready', () => { console.log( `Logged in as ${client.user.tag}!` ); } );
+client.on('ready', () => { console.log(`Logged in as ${client.user.tag}!`); });
 
 client.login(TOKEN);
