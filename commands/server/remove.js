@@ -1,6 +1,10 @@
 module.exports.help = {
     name: 'remove',
+    aliases: ['remove'],
     description: 'Retire un ou plusieurs rôles.',
+    cooldown: 0,
+    usage: '<role>',
+    args: true,
 };
 
 module.exports.run = ( client, message, args ) => {

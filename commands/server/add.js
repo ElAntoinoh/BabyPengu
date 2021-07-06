@@ -1,6 +1,10 @@
 module.exports.help = {
     name: 'add',
+    aliases: ['add'],
     description: 'Ajoute un ou plusieurs rôles.',
+    cooldown: 0,
+    usage: '<role>',
+    args: true,
 };
 
 module.exports.run = ( client, message, args ) => {
