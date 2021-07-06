@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports.help = {
     name: 'kick',
     aliases: ['kick'],
+    category: 'moderation',
     description: 'Kick un utilisateur',
     cooldown: 0,
     usage: `<@utilisateur> <raison>`,

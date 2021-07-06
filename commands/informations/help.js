@@ -1,14 +1,14 @@
 module.exports.help = {
-    name: 'ping',
-    aliases: ['ping'],
-    category: 'texts',
+    name: 'help',
+    aliases: ['help', 'h', 'aide'],
+    category: 'informations',
     description: 'Renvoie pong !',
-    cooldown: 10,
+    cooldown: 0,
     usage: '',
     permissions: false,
     args: false,
 };
 
 module.exports.run = ( client, message, args ) => {
-    message.channel.send("pong !");
+    
 };

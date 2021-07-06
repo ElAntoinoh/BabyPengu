@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports.help = {
     name: 'userinfo',
     aliases: ['userinfo', 'infouser'],
+    category: 'informations',
     description: 'Renvoie les informations de l\'utilisateur mentionné.',
     cooldown: 0,
     usage: '<mention_utilisateur>',

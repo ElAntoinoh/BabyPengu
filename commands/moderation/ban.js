@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports.help = {
     name: 'ban',
     aliases: ['ban'],
+    category: 'moderation',
     description: 'Ban un utilisateur',
     cooldown: 0,
     usage: `<@utilisateur> <raison>`,

@@ -1,9 +1,9 @@
-const ms = require("ms");
 const { MessageEmbed } = require("discord.js");
 
 module.exports.help = {
     name: 'unmute',
     aliases: ['unmute'],
+    category: 'moderation',
     description: 'Unmute un utilisateur',
     cooldown: 0,
     usage: `<@utilisateur>`,

@@ -1,6 +1,7 @@
 module.exports.help = {
     name: 'say',
     aliases: ['say', 'repeat', 'rep'],
+    category: 'texts',
     description: 'Fait parler BabyPengu',
     cooldown: 0,
     usage: `<votre_message>`,
