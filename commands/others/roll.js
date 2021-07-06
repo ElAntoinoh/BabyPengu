@@ -7,6 +7,7 @@ module.exports.help = {
     description: 'Lance des dés',
     cooldown: 1,
     usage: '',
+    permissions: false,
     args: false,
 };
 

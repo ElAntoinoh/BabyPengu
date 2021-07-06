@@ -4,6 +4,7 @@ module.exports.help = {
     description: 'Retire un ou plusieurs rôles.',
     cooldown: 0,
     usage: '<role>',
+    permissions: true,
     args: true,
 };
 

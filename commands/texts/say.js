@@ -4,6 +4,7 @@ module.exports.help = {
     description: 'Fait parler BabyPengu',
     cooldown: 0,
     usage: `<votre_message>`,
+    permissions: false,
     args: true,
 };
 

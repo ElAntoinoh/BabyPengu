@@ -32,7 +32,14 @@ client.on('message', message => {
 
     const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName)); // Atribution de la commande en fonction de son nom ( ou d'un de ses aliases )
     if( !command ) return;
-    console.log(client.commands);
+    
+    if( command.help.isUserAdmin && message.guild.member( message.mentions.users.first() ).hasPermission('BAN_MEMBERS') ) {
+        return message.reply("tu n'as pas le droit d'utiliser cette commande sur cet utilisateur.");
+    }
+
+    if( command.help.permissions && !message.member.hasPermission('BAN_MEMBERS') ) {
+        return message.reply("tu n'as pas le droit d'utiliser cette commande.");
+    }
     //#endregion
 
     //#region contrôle arguments

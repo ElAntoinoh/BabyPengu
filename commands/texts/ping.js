@@ -4,6 +4,7 @@ module.exports.help = {
     description: 'Renvoie pong !',
     cooldown: 10,
     usage: '',
+    permissions: false,
     args: false,
 };
 
