@@ -1,6 +1,7 @@
 module.exports.help = {
     name: 'remove',
     aliases: ['remove'],
+    category: 'moderation',
     description: 'Retire un ou plusieurs rôles.',
     cooldown: 0,
     usage: '<role>',

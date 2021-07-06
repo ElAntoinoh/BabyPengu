@@ -4,6 +4,7 @@ const deImg = new MessageAttachment("./assets/img/de.png");
 module.exports.help = {
     name: 'roll',
     aliases: ['roll'],
+    category: 'others',
     description: 'Lance des dés',
     cooldown: 1,
     usage: '',

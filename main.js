@@ -1,6 +1,6 @@
 const { readdirSync        } = require("fs");
 const { Client, Collection } = require('discord.js');
-const { TOKEN, PREFIX      } = require("C:/Users/toino/OneDrive/Bureau/config"); // Si config.js n'est pas dans le même répertoire
+const { TOKEN, PREFIX      } = require("../config"); // Si config.js n'est pas dans le même répertoire
 //const { TOKEN, PREFIX      } = require("./config"); // Si config.js est dans le même répertoire
 
 const client = new Client();

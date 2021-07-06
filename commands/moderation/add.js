@@ -1,6 +1,7 @@
 module.exports.help = {
     name: 'add',
     aliases: ['add'],
+    category: 'moderation',
     description: 'Ajoute un ou plusieurs rôles.',
     cooldown: 0,
     usage: '<role>',
