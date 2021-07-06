@@ -1,5 +1,5 @@
 const ms = require("ms");
-const { MessageEmbed, VoiceBroadcast } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 module.exports.help = {
     name: 'mute',
@@ -40,6 +40,15 @@ module.exports.run = async ( client, message, args ) => {
     await user.voice.kick();
 
     message.channel.send(`<@${user.id}> est mute pour ${ms(ms(muteTime))}.`);
+
+    const embed = new MessageEmbed()
+        .setAuthor( `${user.user.username} ${user.user.id}`, user.user.displayAvatarURL() )
+        .setColor("#ffff00")
+        .setDescription(`**Action**: mute\n**Durée**: ${muteTime}`)
+        .setTimestamp()
+        .setFooter( message.author.username, message.author.avatarURL() );
+    
+    client.channels.cache.get('816784812697714688').send(embed);
 
     setTimeout( () => {
         user.roles.remove(muteRole.id);

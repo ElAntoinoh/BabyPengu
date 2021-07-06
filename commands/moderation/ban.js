@@ -19,7 +19,7 @@ module.exports.run = ( client, message, args ) => {
 
     const embed = new MessageEmbed()
         .setAuthor( `${user.username} ${user.id}`, user.avatarURL() )
-        .setColor("#dc143c")
+        .setColor("#ff0000")
         .setDescription(`**Action**: ban\n**Raison**: ${reason}`)
         .setTimestamp()
         .setFooter( message.author.username, message.author.avatarURL() );

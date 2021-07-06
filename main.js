@@ -37,21 +37,21 @@ client.on('message', message => {
     if( command.help.permissions && !message.member.hasPermission('BAN_MEMBERS') ) {
         return message.reply("tu n'as pas le droit d'utiliser cette commande.");
     }
-
-    if( command.help.isUserAdmin && !user ) message.reply("il faut mentionner un utilisateur");
-
-    if( command.help.isUserAdmin && message.guild.member(user).hasPermission('BAN_MEMBERS') ) {
-        return message.reply("tu n'as pas le droit d'utiliser cette commande sur cet utilisateur.");
-    }
     //#endregion
 
     //#region contrôle arguments
     if( command.help.args && !args.length ) {
-        let noArgsReply = `J'ai besoin d'arguments pour cette commande, ${message.author}..`;
+        let noArgsReply = `Syntaxe invalide, ${message.author}.`;
 
-        if( command.help.usage ) noArgsReply += `\nVoici comment l'utiliser: \n\`${PREFIX}${command.help.name} ${command.help.usage}\``;
+        if( command.help.usage ) noArgsReply += `\nBonne requête: \`${PREFIX}${command.help.name} ${command.help.usage}\``;
 
         return message.channel.send(noArgsReply);
+    }
+
+    if( command.help.isUserAdmin && !user ) return message.reply("il faut mentionner un utilisateur");
+
+    if( command.help.isUserAdmin && message.guild.member(user).hasPermission('BAN_MEMBERS') ) {
+        return message.reply("tu n'as pas le droit d'utiliser cette commande sur cet utilisateur.");
     }
     //#endregion
 
