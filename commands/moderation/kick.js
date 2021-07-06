@@ -5,7 +5,7 @@ module.exports.help = {
     aliases: ['kick'],
     description: 'Kick un utilisateur',
     cooldown: 0,
-    usage: `<utilisateur>`,
+    usage: `<@utilisateur> <raison>`,
     isUserAdmin: true,
     permissions: true,
     args: true,

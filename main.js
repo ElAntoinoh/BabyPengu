@@ -29,16 +29,19 @@ client.on('message', message => {
 
     const args = message.content.slice(PREFIX.length).split(/ +/); // Création d'un array contenant tous les arguments ( séparés par des espaces )
     const commandName = args.shift().toLowerCase(); // Récupération du premier argument du message ( nom de la commande )
+    const user = message.mentions.users.first(); // Récupération de l'utilisateur mentionné
 
     const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName)); // Atribution de la commande en fonction de son nom ( ou d'un de ses aliases )
     if( !command ) return;
     
-    if( command.help.isUserAdmin && message.guild.member( message.mentions.users.first() ).hasPermission('BAN_MEMBERS') ) {
-        return message.reply("tu n'as pas le droit d'utiliser cette commande sur cet utilisateur.");
-    }
-
     if( command.help.permissions && !message.member.hasPermission('BAN_MEMBERS') ) {
         return message.reply("tu n'as pas le droit d'utiliser cette commande.");
+    }
+
+    if( command.help.isUserAdmin && !user ) message.reply("il faut mentionner un utilisateur");
+
+    if( command.help.isUserAdmin && message.guild.member(user).hasPermission('BAN_MEMBERS') ) {
+        return message.reply("tu n'as pas le droit d'utiliser cette commande sur cet utilisateur.");
     }
     //#endregion
 
