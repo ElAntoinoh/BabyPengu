@@ -7,15 +7,16 @@ module.exports.help = {
     description: 'Purge un nombre de messages spécifié sur un utilisateur spécifié',
     cooldown: 5,
     usage: `<@utilisateur> <nombre_de_messages>`,
-    isUserAdmin: true,
-    permissions: true,
+    needUser: true,
+    applicableOnModerator: false,
+    public: false,
     args: true,
 };
 
 module.exports.run = async ( client, message, args ) => {
     let user = message.guild.member(message.mentions.users.first());
 
-    if( isNaN(args[1]) || args[1] < 1 ) return message.reply("il faut spécifier un nombre entier.");
+    if( isNaN(args[1]) || args[1] < 1 ) return message.reply("il faut spécifier un nombre de messages à supprimer.");
 
     const messages = (await message.channel.messages.fetch({
         before: message.id,

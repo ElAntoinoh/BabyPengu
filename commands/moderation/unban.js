@@ -7,8 +7,9 @@ module.exports.help = {
     description: 'Unban un utilisateur',
     cooldown: 0,
     usage: `<id_utilisateur>`,
-    isUserAdmin: false,
-    permissions: true,
+    needUser: true,
+    applicableOnModerator: false,
+    public: false,
     args: true,
 };
 

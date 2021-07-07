@@ -7,8 +7,9 @@ module.exports.help = {
     description: 'Purge un nombre de messages spécifié',
     cooldown: 5,
     usage: `<nombre_de_messages>`,
-    isUserAdmin: false,
-    permissions: true,
+    needUser: false,
+    applicableOnModerator: true,
+    public: false,
     args: true,
 };
 

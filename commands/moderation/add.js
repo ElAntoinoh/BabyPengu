@@ -4,8 +4,10 @@ module.exports.help = {
     category: 'moderation',
     description: 'Ajoute un ou plusieurs rôles.',
     cooldown: 0,
-    usage: '<role>',
-    permissions: true,
+    usage: '<role> : ajoute un rôle\n$add <role> ... <role> : ajoute tous les rôles passés en paramètre',
+    needUser: false,
+    applicableOnModerator: true,
+    public: true,
     args: true,
 };
 

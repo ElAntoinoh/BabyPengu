@@ -5,8 +5,11 @@ module.exports.help = {
     aliases: ['userinfo', 'infouser'],
     category: 'informations',
     description: 'Renvoie les informations de l\'utilisateur mentionné.',
-    cooldown: 0,
+    cooldown: 10,
     usage: '<mention_utilisateur>',
+    needUser: true,
+    applicableOnModerator: true,
+    public: true,
     args: true,
 };
 

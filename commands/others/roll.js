@@ -7,8 +7,10 @@ module.exports.help = {
     category: 'others',
     description: 'Lance des dés',
     cooldown: 1,
-    usage: '',
-    permissions: false,
+    usage: " : nombre aléatoire entre 1 et 6\n§roll <int> : nombre aléatoire entre 1 et <int>\n§roll <int1> <int2> : nombre aléatoire entre <int1> et <int2>",
+    needUser: false,
+    applicableOnModerator: true,
+    public: true,
     args: false,
 };
 

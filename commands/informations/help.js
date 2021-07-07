@@ -11,8 +11,9 @@ module.exports.help = {
     description: 'Renvoie une liste de commandes avec leurs informations.',
     cooldown: 0,
     usage: '<command_name>',
-    isuserAdmin: false,
-    permissions: false,
+    needUser: false,
+    applicableOnModerator: false,
+    public: true,
     args: false,
 };
 
@@ -34,6 +35,7 @@ module.exports.run = ( client, message, args ) => {
     }
     else {
         const command = client.commands.get(args[0]) || client.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(args[0]));
+        if( !command ) return message.channel.send("Cette commande n'existe pas.");
 
         const embed = new MessageEmbed()
             .setColor("#36393f")

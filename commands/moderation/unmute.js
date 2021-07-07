@@ -7,8 +7,9 @@ module.exports.help = {
     description: 'Unmute un utilisateur',
     cooldown: 0,
     usage: `<@utilisateur>`,
-    isUserAdmin: true,
-    permissions: true,
+    needUser: true,
+    applicableOnModerator: false,
+    public: true,
     args: true,
 };
 

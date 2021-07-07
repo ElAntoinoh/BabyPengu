@@ -3,21 +3,24 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports.help = {
     name: 'mute',
-    aliases: ['mute'],
+    aliases: ['mute', 'ftg'],
     category: 'moderation',
     description: 'Mute un utilisateur',
     cooldown: 0,
     usage: `<@utilisateur> <temps>`,
-    isUserAdmin: true,
-    permissions: true,
+    needUser: true,
+    applicableOnModerator: false,
+    public: false,
     args: true,
 };
 
 module.exports.run = async ( client, message, args ) => {
     let user = message.guild.member(message.mentions.users.first());
 
-    let muteTime = (args[1] || '60s');
-    let muteRole = message.guild.roles.cache.find( r => r.name === 'muted' );
+    let muteTime = '60s';
+    if( args[1] && typeof( ms( args[1] ) ) === 'number' ) muteTime = args[1];
+
+    let muteRole = message.guild.roles.cache.find( role => role.name === 'muted' );
 
     if( !muteRole ) {
         muteRole = await message.guild.roles.create({

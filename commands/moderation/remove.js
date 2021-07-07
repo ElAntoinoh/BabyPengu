@@ -4,8 +4,10 @@ module.exports.help = {
     category: 'moderation',
     description: 'Retire un ou plusieurs rôles.',
     cooldown: 0,
-    usage: '<role>',
-    permissions: true,
+    usage: '<role> : retire le rôle\n$remove <role> ... <role> : retire tous les rôles passés en paramètre',
+    needUser: false,
+    applicableOnModerator: true,
+    public: true,
     args: true,
 };
 

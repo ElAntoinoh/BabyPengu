@@ -4,8 +4,10 @@ module.exports.help = {
     category: 'texts',
     description: 'Fait parler BabyPengu',
     cooldown: 0,
-    usage: `<votre_message>`,
-    permissions: false,
+    usage: `<message>`,
+    needUser: false,
+    applicableOnModerator: true,
+    public: true,
     args: true,
 };
 
