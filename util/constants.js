@@ -1,5 +1,20 @@
 const MESSAGES = {
     COMMANDS: {
+        ADMIN: {
+            EVAL: {
+                name: 'eval',
+                aliases: ['eval'],
+                category: 'admin',
+                description: 'Renvoie un code javascript testé.',
+                cooldown: 0,
+                usage: '<code_to_test>',
+                needUser: false,
+                applicableOnModerator: false,
+                public: false,
+                args: true,
+            },
+        },
+
         INFORMATIONS: {
             HELP: {
                 name: 'help',
