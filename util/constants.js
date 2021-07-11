@@ -83,6 +83,19 @@ const MESSAGES = {
                 args: true,
             },
 
+            ADDTO: {
+                name: 'addto',
+                aliases: ['addto'],
+                category: 'moderation',
+                description: 'Ajoute un ou plusieurs rôles à un utilisateur mentionné',
+                cooldown: 0,
+                usage: '<@utilisateur> <role> : ajoute un rôle à l\'utilisateur\n$addAt <@utilisateur> <role> ... <role> : ajoute tous les rôles passés en paramètre à l\'utilisateur',
+                needUser: true,
+                applicableOnModerator: false,
+                public: false,
+                args: true,
+            },
+
             BAN: {
                 name: 'ban',
                 aliases: ['ban'],
@@ -161,6 +174,19 @@ const MESSAGES = {
                 args: true,
             },
 
+            REMOVEFROM: {
+                name: 'removefrom',
+                aliases: ['removefrom'],
+                category: 'moderation',
+                description: 'Retire un ou plusieurs rôles à un utilisateur mentionné.',
+                cooldown: 0,
+                usage: '<@utilisateur> <role> : retire le rôle à l\'utilisateur\n$removefrom <@utilisateur> <role> ... <role> : retire tous les rôles passés en paramètre à l\'utilisateur',
+                needUser: true,
+                applicableOnModerator: false,
+                public: false,
+                args: true,
+            },
+
             UNBAN: {
                 name: 'unban',
                 aliases: ['unban'],
@@ -183,7 +209,7 @@ const MESSAGES = {
                 usage: `<@utilisateur>`,
                 needUser: true,
                 applicableOnModerator: false,
-                public: true,
+                public: false,
                 args: true,
             },
         },

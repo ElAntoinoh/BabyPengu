@@ -9,7 +9,7 @@ module.exports = {
         if( message.channel.type === "dm" ) return client.emit( "directMessage", message );
 
         //#region Infos de base
-        if( !message.content.startsWith(PREFIX) ) return; // || message.author.bot ) return;
+        if( !message.content.startsWith(PREFIX) ) return;
 
         const args = message.content.slice(PREFIX.length).split(/ +/); // Array contenant les arguments
 

@@ -11,9 +11,11 @@ module.exports.run = ( client, message, args ) => {
             .setColor("#dc143c")
             .setThumbnail(message.mentions.users.first().avatarURL())
             .addFields(
-                { name: "Pseudo:", value: `${message.mentions.users.first().username}` },
-                { name: "Tag:",    value: `${message.mentions.users.first().tag}`      }
+                { name: "Tag:",    value: `${message.mentions.users.first().tag}` },
+                { name: "id:", value: `${message.mentions.users.first().id}`      },
             );
+
+        if( message.mentions.users.first().bot ) embed.setFooter("Cet utilisateur est un bot");
         
         message.channel.send(embed);
     }

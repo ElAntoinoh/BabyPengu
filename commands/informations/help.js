@@ -36,6 +36,8 @@ module.exports.run = ( client, message, args ) => {
         
         if( command.help.aliases.length > 1 ) embed.addField("Alias", `${command.help.aliases.join(', ')}`, true);
 
+        embed.addField("Publique", command.help.public ? 'oui' : 'non');
+
         return message.channel.send(embed);
     }
 };
