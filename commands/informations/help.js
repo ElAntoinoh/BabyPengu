@@ -4,18 +4,9 @@ const { readdirSync  } = require("fs");
 
 const categoryList = readdirSync('./commands');
 
-module.exports.help = {
-    name: 'help',
-    aliases: ['help', 'h', 'aide'],
-    category: 'informations',
-    description: 'Renvoie une liste de commandes avec leurs informations.',
-    cooldown: 0,
-    usage: '<command_name>',
-    needUser: false,
-    applicableOnModerator: false,
-    public: true,
-    args: false,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.INFORMATIONS.HELP;
 
 module.exports.run = ( client, message, args ) => {
     if( !args.length ) {

@@ -1,17 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
-module.exports.help = {
-    name: 'allroles',
-    aliases: ['allroles'],
-    category: 'reactions',
-    description: 'Renvoie un message avec des reactions',
-    cooldown: 0,
-    usage: '',
-    needUser: false,
-    applicableOnModerator: false,
-    public: false,
-    args: false,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.REACTIONS.ALLROLES;
 
 module.exports.run = ( client, message, args ) => {
     const blueRole   = message.guild.roles.cache.get("860646890621108275");

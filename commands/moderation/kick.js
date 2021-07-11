@@ -1,17 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
-module.exports.help = {
-    name: 'kick',
-    aliases: ['kick'],
-    category: 'moderation',
-    description: 'Kick un utilisateur',
-    cooldown: 0,
-    usage: `<@utilisateur> <raison>`,
-    needUser: true,
-    applicableOnModerator: false,
-    public: false,
-    args: true,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.MODERATION.KICK;
 
 module.exports.run = ( client, message, args ) => {
     const user = message.mentions.users.first();

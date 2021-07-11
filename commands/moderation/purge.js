@@ -1,17 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
-module.exports.help = {
-    name: 'purge',
-    aliases: ['purge'],
-    category: 'moderation',
-    description: 'Purge un nombre de messages spécifié',
-    cooldown: 5,
-    usage: `<nombre_de_messages>`,
-    needUser: false,
-    applicableOnModerator: true,
-    public: false,
-    args: true,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.MODERATION.PURGE;
 
 module.exports.run = async ( client, message, args ) => {
     if( isNaN(args[0]) || args[0] < 1 ) return message.reply("il faut spécifier un nombre entier.");

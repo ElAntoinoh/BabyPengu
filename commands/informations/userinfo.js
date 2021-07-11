@@ -1,17 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
-module.exports.help = {
-    name: 'userinfo',
-    aliases: ['userinfo', 'infouser'],
-    category: 'informations',
-    description: 'Renvoie les informations de l\'utilisateur mentionné.',
-    cooldown: 10,
-    usage: '<mention_utilisateur>',
-    needUser: true,
-    applicableOnModerator: true,
-    public: true,
-    args: true,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.INFORMATIONS.USERINFO;
 
 module.exports.run = ( client, message, args ) => {
     if( args.length === 1 )

@@ -1,17 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
-module.exports.help = {
-    name: 'unmute',
-    aliases: ['unmute'],
-    category: 'moderation',
-    description: 'Unmute un utilisateur',
-    cooldown: 0,
-    usage: `<@utilisateur>`,
-    needUser: true,
-    applicableOnModerator: false,
-    public: true,
-    args: true,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.MODERATION.UNMUTE;
 
 module.exports.run = async ( client, message, args ) => {
     let user = message.guild.member(message.mentions.users.first());

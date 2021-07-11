@@ -1,15 +1,6 @@
-module.exports.help = {
-    name: 'add',
-    aliases: ['add'],
-    category: 'moderation',
-    description: 'Ajoute un ou plusieurs rôles.',
-    cooldown: 0,
-    usage: '<role> : ajoute un rôle\n$add <role> ... <role> : ajoute tous les rôles passés en paramètre',
-    needUser: false,
-    applicableOnModerator: true,
-    public: true,
-    args: true,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.MODERATION.ADD;
 
 module.exports.run = ( client, message, args ) => {
     args.forEach(roleName => {

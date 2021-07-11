@@ -1,18 +1,9 @@
 const { MessageEmbed, MessageAttachment } = require("discord.js");
 const deImg = new MessageAttachment("./assets/img/de.png");
 
-module.exports.help = {
-    name: 'roll',
-    aliases: ['roll'],
-    category: 'others',
-    description: 'Lance des dés',
-    cooldown: 1,
-    usage: " : nombre aléatoire entre 1 et 6\n§roll <int> : nombre aléatoire entre 1 et <int>\n§roll <int1> <int2> : nombre aléatoire entre <int1> et <int2>",
-    needUser: false,
-    applicableOnModerator: true,
-    public: true,
-    args: false,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.MISC.ROLL;
 
 module.exports.run = ( client, message, args ) => {
     var resultat;

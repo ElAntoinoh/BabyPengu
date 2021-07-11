@@ -1,17 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
-module.exports.help = {
-    name: 'lobby',
-    aliases: ['lobby', 'acceuil'],
-    category: 'reactions',
-    description: 'Renvoie le message d\'acceuil du serveur',
-    cooldown: 0,
-    usage: '',
-    needUser: false,
-    applicableOnModerator: false,
-    public: false,
-    args: false,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.REACTIONS.LOBBY;
 
 module.exports.run = ( client, message, args ) => {
     const blueRole   = message.guild.roles.cache.get("860646890621108275");

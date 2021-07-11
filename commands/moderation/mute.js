@@ -1,18 +1,9 @@
 const ms = require("ms");
 const { MessageEmbed } = require("discord.js");
 
-module.exports.help = {
-    name: 'mute',
-    aliases: ['mute', 'ftg'],
-    category: 'moderation',
-    description: 'Mute un utilisateur',
-    cooldown: 0,
-    usage: `<@utilisateur> <temps>`,
-    needUser: true,
-    applicableOnModerator: false,
-    public: false,
-    args: true,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.MODERATION.MUTE;
 
 module.exports.run = async ( client, message, args ) => {
     let user = message.guild.member(message.mentions.users.first());

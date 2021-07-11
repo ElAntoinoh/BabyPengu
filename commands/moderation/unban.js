@@ -1,17 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
-module.exports.help = {
-    name: 'unban',
-    aliases: ['unban'],
-    category: 'moderation',
-    description: 'Unban un utilisateur',
-    cooldown: 0,
-    usage: `<id_utilisateur>`,
-    needUser: true,
-    applicableOnModerator: false,
-    public: false,
-    args: true,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.MODERATION.UNBAN;
 
 module.exports.run = async ( client, message, args ) => {
     let user = await client.users.fetch(args[0]);

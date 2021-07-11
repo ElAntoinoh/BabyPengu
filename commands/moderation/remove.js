@@ -1,15 +1,6 @@
-module.exports.help = {
-    name: 'remove',
-    aliases: ['remove'],
-    category: 'moderation',
-    description: 'Retire un ou plusieurs rôles.',
-    cooldown: 0,
-    usage: '<role> : retire le rôle\n$remove <role> ... <role> : retire tous les rôles passés en paramètre',
-    needUser: false,
-    applicableOnModerator: true,
-    public: true,
-    args: true,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.MODERATION.REMOVE;
 
 module.exports.run = ( client, message, args ) => {
     args.forEach(roleName => {

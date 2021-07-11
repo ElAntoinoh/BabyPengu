@@ -1,17 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
-module.exports.help = {
-    name: 'prune',
-    aliases: ['prune'],
-    category: 'moderation',
-    description: 'Purge un nombre de messages spécifié sur un utilisateur spécifié',
-    cooldown: 5,
-    usage: `<@utilisateur> <nombre_de_messages>`,
-    needUser: true,
-    applicableOnModerator: false,
-    public: false,
-    args: true,
-};
+const { MESSAGES } = require("../../util/constants");
+
+module.exports.help = MESSAGES.COMMANDS.MODERATION.PRUNE;
 
 module.exports.run = async ( client, message, args ) => {
     let user = message.guild.member(message.mentions.users.first());
