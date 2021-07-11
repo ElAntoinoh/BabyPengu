@@ -1,7 +1,7 @@
 const { readdirSync        } = require("fs");
-const { Client, Collection } = require('discord.js');
-const { TOKEN, PREFIX      } = require("../config"); // Si config.js n'est pas dans le même répertoire
-//const { TOKEN, PREFIX      } = require("./config"); // Si config.js est dans le même répertoire
+const { Client, Collection } = require("discord.js");
+const { TOKEN              } = require("../config"); // Si config.js n'est pas dans le même répertoire
+//const { TOKEN              } = require("./config"); // Si config.js est dans le même répertoire
 
 const client = new Client();
 ["commands", "cooldowns"].forEach( x => client[x] = new Collection ); // Création de deux Collections en une fois
@@ -14,29 +14,26 @@ const loadCommands = (dir = "./commands/") => {
         for( const file of commands ) {
             const getFileName = require(`${dir}/${dirs}/${file}`);
             client.commands.set(getFileName.help.name, getFileName);
-            //console.log(`Commande chargée: ${getFileName.help.name}`);
         };
     });
 };
 //#endregion
 
-//#region loadEvents()
-const loadEvents = (dir = "./events/") => {
-    readdirSync(dir).forEach(dirs => {
-        const events = readdirSync(`${dir}/${dirs}/`).filter(files => files.endsWith(".js")); // Tri par extensions
+//#region events
+const eventFiles = readdirSync('./events').filter( file => file.endsWith('.js') );
 
-        for( const event of events ) {
-            const evt = require(`${dir}/${dirs}/${event}`);
-            const evtName = event.split(".")[0];
+for( const file of eventFiles ) {
+	const event = require(`./events/${file}`);
 
-            client.on( evtName, evt.bind( null, client ) );
-            //console.log(`Evénement chargé: ${evtName}`);
-        };
-    });
-};
+    if( event.once ) {
+        client.once(event.name, (...args) => event.execute(...args, client));
+    }
+    else {
+        client.on(event.name, (...args) => event.execute(...args, client));
+    }
+}
 //#endregion
 
 loadCommands();
-loadEvents();
 
 client.login(TOKEN);

@@ -47,7 +47,7 @@ module.exports.run = async ( client, message, args ) => {
 
     const embed = new MessageEmbed()
         .setAuthor( `${user.user.username} ${user.user.id}`, user.user.displayAvatarURL() )
-        .setColor("#ffff00")
+        .setColor("#ff0000")
         .setDescription(`**Action**: mute\n**Durée**: ${muteTime}`)
         .setTimestamp()
         .setFooter( message.author.username, message.author.avatarURL() );
