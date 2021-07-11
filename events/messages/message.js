@@ -1,5 +1,5 @@
 const { Collection } = require('discord.js');
-const { PREFIX     } = require("../../config"); // Si config.js est au dessus du dossier principal
+const { PREFIX     } = require("../../../config"); // Si config.js est au dessus du dossier principal
 //const { TOKEN, PREFIX } = require("../config"); // Si config.js est dans le dossier principal
 
 module.exports = {
