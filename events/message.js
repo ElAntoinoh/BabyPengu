@@ -6,6 +6,8 @@ module.exports = {
     name: 'message',
 
     execute( message, client ) {
+        if( message.channel.type === "dm" ) return client.emit( "directMessage", message );
+
         //#region Infos de base
         if( !message.content.startsWith(PREFIX) ) return; // || message.author.bot ) return;
 

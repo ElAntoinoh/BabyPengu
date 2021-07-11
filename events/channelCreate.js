@@ -4,6 +4,8 @@ module.exports = {
     name: 'channelCreate',
 
     async execute( channel, client ) {
+        if( channel.type ==="dm" ) return;
+        
         const fetchGuildAuditLogs = await channel.guild.fetchAuditLogs({
             limit: 1,
             type: 'CHANNEL_CREATE',

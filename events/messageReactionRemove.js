@@ -6,7 +6,7 @@ module.exports = {
         const member  = message.guild.members.cache.get(user.id);
         const channel = message.guild.channels.cache.find( c => c.id === '862047950813003776' );
 
-        const emoji   = messageReaction.emoji.name;
+        const emoji = messageReaction.emoji.name;
 
         const blueRole   = message.guild.roles.cache.get("860646890621108275");
         const orangeRole = message.guild.roles.cache.get("860631983573958676");
