@@ -5,11 +5,13 @@ const { PREFIX     } = require("../../../config"); // Si config.js est au dessus
 module.exports = {
     name: 'message',
 
-    execute( message, client ) {
+    async execute ( message, client ) {
         if( message.channel.type === "dm" ) return client.emit( "directMessage", message );
 
         //#region Infos de base
         if( !message.content.startsWith(PREFIX) ) return;
+
+        const settings = await client.getGuild(message.guild);
 
         const args = message.content.slice(PREFIX.length).split(/ +/); // Array contenant les arguments
 
@@ -58,6 +60,6 @@ module.exports = {
         //#endregion
 
         // Exécution de la commande
-        command.run( client, message, args );
+        command.run( client, message, args, settings );
     },
 };

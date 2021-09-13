@@ -13,6 +13,34 @@ const MESSAGES = {
                 public: false,
                 args: true,
             },
+
+            CONFIG: {
+                name: 'config',
+                aliases: ['config'],
+                category: 'admin',
+                description: 'Modifie la base de données.',
+                cooldown: 0,
+                usage: '<key> <value>',
+                needUser: false,
+                applicableOnModerator: false,
+                public: false,
+                args: true,
+            }
+        },
+
+        GAMES: {
+            CARD: {
+                name: 'card',
+                aliases: ['card'],
+                category: 'games',
+                description: 'Renvoie une carte.',
+                cooldown: 0,
+                usage: '',
+                needUser: false,
+                applicableOnModerator: false,
+                public: true,
+                args: false,
+            },
         },
 
         INFORMATIONS: {
