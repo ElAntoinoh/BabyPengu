@@ -4,14 +4,14 @@ module.exports = {
     name: 'message',
 
     async execute ( message, client ) {
+        const settings = await client.getGuild(message.guild);
+        
         if( message.channel.type === "dm" ) return client.emit( "directMessage", message );
 
         //#region Infos de base
-        if( !message.content.startsWith(client.config.PREFIX) ) return;
+        if( !message.content.startsWith(settings.prefix) ) return;
 
-        const settings = await client.getGuild(message.guild);
-
-        const args = message.content.slice(client.config.PREFIX.length).split(/ +/); // Array contenant les arguments
+        const args = message.content.slice(settings.prefix.length).split(/ +/); // Array contenant les arguments
 
         const commandName = args.shift().toLowerCase(); // Nom de la commande
         const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName)); // Objet commande
