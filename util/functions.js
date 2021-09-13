@@ -16,7 +16,7 @@ module.exports = {
         client.getGuild = async guild => {
             const data = await Guild.findOne({ guildID: guild.id });
             if(data) return data;
-            return client.config.defaultSettings;
+            return client.config.DEFAULTSETTINGS;
         };
 
         client.updateGuild = async( guild, settings ) => {

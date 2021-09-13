@@ -1,6 +1,4 @@
 const { Collection } = require('discord.js');
-const { PREFIX     } = require("../../../config"); // Si config.js est au dessus du dossier principal
-//const { TOKEN, PREFIX } = require("../config"); // Si config.js est dans le dossier principal
 
 module.exports = {
     name: 'message',
@@ -9,11 +7,11 @@ module.exports = {
         if( message.channel.type === "dm" ) return client.emit( "directMessage", message );
 
         //#region Infos de base
-        if( !message.content.startsWith(PREFIX) ) return;
+        if( !message.content.startsWith(client.config.PREFIX) ) return;
 
         const settings = await client.getGuild(message.guild);
 
-        const args = message.content.slice(PREFIX.length).split(/ +/); // Array contenant les arguments
+        const args = message.content.slice(client.config.PREFIX.length).split(/ +/); // Array contenant les arguments
 
         const commandName = args.shift().toLowerCase(); // Nom de la commande
         const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName)); // Objet commande

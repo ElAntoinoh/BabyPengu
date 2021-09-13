@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const { PREFIX       } = require("../../../config");
 const { readdirSync  } = require("fs");
 
 const categoryList = readdirSync('./commands');
@@ -13,7 +12,7 @@ module.exports.run = ( client, message, args ) => {
         const embed = new MessageEmbed()
             .setColor("#36393f")
             .addField("Liste des commandes", `Une liste de toutes les sous-catégories disponibles et leurs commandes\n
-                Pour plus d'informations sur une commande, tapez \`${PREFIX}help <command_name>\``);
+                Pour plus d'informations sur une commande, tapez \`${client.config.PREFIX}help <command_name>\``);
         
         for( const category of categoryList ) {
             embed.addField(
@@ -32,7 +31,7 @@ module.exports.run = ( client, message, args ) => {
             .setColor("#36393f")
             .setTitle(`- ${command.help.name} -`)
             .addField("Description", `${command.help.description}`)
-            .addField("Utilisation", command.help.usage ? `${PREFIX}${command.help.name} ${command.help.usage}` : `${PREFIX}${command.help.name}`, true)
+            .addField("Utilisation", command.help.usage ? `${client.config.PREFIX}${command.help.name} ${command.help.usage}` : `${client.config.PREFIX}${command.help.name}`, true)
         
         if( command.help.aliases.length > 1 ) embed.addField("Alias", `${command.help.aliases.join(', ')}`, true);
 

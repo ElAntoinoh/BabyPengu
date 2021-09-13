@@ -1,11 +1,10 @@
 const { MessageEmbed } = require("discord.js");
-const { PREFIX       } = require("../../../config");
 
 module.exports = {
     name: 'messageDelete',
 
     async execute( message, client ) {
-        if( !message.content.startsWith(PREFIX) ) {
+        if( !message.content.startsWith(client.config.PREFIX) ) {
             const fetchGuildAuditLogs = await message.guild.fetchAuditLogs({
                 limit: 1,
                 type: 'MESSAGE_DELETE',

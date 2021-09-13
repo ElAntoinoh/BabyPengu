@@ -1,10 +1,10 @@
 const { Client, Collection       } = require("discord.js");
 const { loadCommands, loadEvents } = require("./util/loader");
 
-const { TOKEN } = require("../config");
-
 const client = new Client();
 require("./util/functions").execute(client)
+
+client.config = require("../config");
 client.mongoose = require("./util/mongoose");
 
 ["commands", "cooldowns"].forEach( x => client[x] = new Collection );
@@ -14,4 +14,4 @@ loadEvents(client);
 
 client.mongoose.init();
 
-client.login(TOKEN);
+client.login(client.config.TOKEN);
