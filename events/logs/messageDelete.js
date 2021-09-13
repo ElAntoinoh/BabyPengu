@@ -4,7 +4,10 @@ module.exports = {
     name: 'messageDelete',
 
     async execute( message, client ) {
-        if( !message.content.startsWith(client.config.PREFIX) ) {
+        const settings = await client.getGuild(message.guild);
+
+        if( !message.content.startsWith(settings.prefix) )
+        {
             const fetchGuildAuditLogs = await message.guild.fetchAuditLogs({
                 limit: 1,
                 type: 'MESSAGE_DELETE',
@@ -22,6 +25,6 @@ module.exports = {
                 .setFooter( executor.username, executor.displayAvatarURL() );
 
             client.channels.cache.get('816784812697714688').send(embed);
-        };
+        }
     },
 }

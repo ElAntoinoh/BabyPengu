@@ -3,9 +3,9 @@ const { Collection } = require('discord.js');
 module.exports = {
     name: 'message',
 
-    async execute ( message, client ) {
+    async execute( message, client ) {
         const settings = await client.getGuild(message.guild);
-        
+
         if( message.channel.type === "dm" ) return client.emit( "directMessage", message );
 
         //#region Infos de base
