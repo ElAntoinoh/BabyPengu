@@ -271,6 +271,19 @@ const MESSAGES = {
                 args: false,
             },
 
+            EMOJI: {
+                name: 'emoji',
+                aliases: ['amoji'],
+                category: 'reactions',
+                description: 'Renvoie des emojis sur notre message',
+                cooldown: 0,
+                usage: '',
+                needUser: false,
+                applicableOnModerator: false,
+                public: true,
+                args: false,
+            },
+
             LOBBY: {
                 name: 'lobby',
                 aliases: ['lobby', 'acceuil'],
