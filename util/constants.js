@@ -151,6 +151,19 @@ const MESSAGES = {
                 public: true,
                 args: true,
             },
+
+            STATS: {
+                name: 'stats',
+                aliases: ['stats'],
+                category: 'misc',
+                description: 'Renvoie des statistiques',
+                cooldown: 0,
+                usage: ``,
+                needUser: false,
+                applicableOnModerator: true,
+                public: true,
+                args: false,
+            },
         },
 
         MODERATION: {
