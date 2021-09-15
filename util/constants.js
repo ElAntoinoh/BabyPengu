@@ -1,6 +1,19 @@
 const MESSAGES = {
     COMMANDS: {
         ADMIN: {
+            CONFIG: {
+                name: 'config',
+                aliases: ['config'],
+                category: 'admin',
+                description: 'Modifie la base de données.',
+                cooldown: 0,
+                usage: '<key> <value>',
+                needUser: false,
+                applicableOnModerator: false,
+                public: false,
+                args: true,
+            },
+
             EVAL: {
                 name: 'eval',
                 aliases: ['eval'],
@@ -14,17 +27,17 @@ const MESSAGES = {
                 args: true,
             },
 
-            CONFIG: {
-                name: 'config',
-                aliases: ['config'],
+            RELOAD: {
+                name: 'reload',
+                aliases: ['reload'],
                 category: 'admin',
-                description: 'Modifie la base de données.',
+                description: 'Relance le bot.',
                 cooldown: 0,
-                usage: '<key> <value>',
+                usage: '',
                 needUser: false,
                 applicableOnModerator: false,
                 public: false,
-                args: true,
+                args: false,
             }
         },
 
