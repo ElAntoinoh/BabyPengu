@@ -28,6 +28,34 @@ const MESSAGES = {
             }
         },
 
+        COLLECTORS: {
+            MSGCOLLECTOR: {
+                name: 'msgcollector',
+                aliases: ['msgcollector', 'mcol'],
+                category: 'collectors',
+                description: 'Message collector.',
+                cooldown: 0,
+                usage: '<msg_to_collect>',
+                needUser: false,
+                applicableOnModerator: false,
+                public: false,
+                args: true,
+            },
+
+            REACTCOLLECTOR: {
+                name: 'reactcollector',
+                aliases: ['reactcollector', 'rcol'],
+                category: 'collectors',
+                description: 'React collector.',
+                cooldown: 0,
+                usage: '',
+                needUser: false,
+                applicableOnModerator: false,
+                public: false,
+                args: false,
+            },
+        },
+
         GAMES: {
             CARD: {
                 name: 'card',
