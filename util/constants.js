@@ -151,22 +151,35 @@ const MESSAGES = {
                 public: true,
                 args: false,
             },
-
-            USERINFO: {
-                name: 'userinfo',
-                aliases: ['userinfo', 'infouser'],
-                category: 'informations',
-                description: 'Renvoie les informations de l\'utilisateur mentionné.',
-                cooldown: 10,
-                usage: '<mention_utilisateur>',
-                needUser: true,
-                applicableOnModerator: true,
-                public: true,
-                args: true,
-            },
         },
 
         MISC: {
+            ASK: {
+                name: 'ask',
+                aliases: ['ask'],
+                category: 'misc',
+                description: 'Répond à une question',
+                cooldown: 0,
+                usage: ``,
+                needUser: false,
+                applicableOnModerator: true,
+                public: true,
+                args: false,
+            },
+
+            BOTINFO: {
+                name: 'botinfo',
+                aliases: ['botinfo'],
+                category: 'misc',
+                description: 'Renvoie des informations sur le bot',
+                cooldown: 0,
+                usage: ``,
+                needUser: false,
+                applicableOnModerator: true,
+                public: true,
+                args: false,
+            },
+
             PING: {
                 name: 'ping',
                 aliases: ['ping'],
@@ -178,6 +191,19 @@ const MESSAGES = {
                 applicableOnModerator: true,
                 public: true,
                 args: false,
+            },
+
+            POLL: {
+                name: 'poll',
+                aliases: ['poll'],
+                category: 'misc',
+                description: 'Crée un sondage',
+                cooldown: 10,
+                usage: '',
+                needUser: false,
+                applicableOnModerator: true,
+                public: true,
+                args: true,
             },
             
             ROLL: {
@@ -206,17 +232,42 @@ const MESSAGES = {
                 args: true,
             },
 
-            STATS: {
-                name: 'stats',
-                aliases: ['stats'],
+            SERVERINFO: {
+                name: 'serverinfo',
+                aliases: ['serverinfo'],
                 category: 'misc',
-                description: 'Renvoie des statistiques',
+                description: 'Renvoie des informations sur le serveur',
                 cooldown: 0,
                 usage: ``,
                 needUser: false,
                 applicableOnModerator: true,
                 public: true,
                 args: false,
+            },
+            STATS: {
+                name: 'stats',
+                aliases: ['stats'],
+                category: 'misc',
+                description: 'Renvoie des statistiques sur le serveur',
+                cooldown: 0,
+                usage: ``,
+                needUser: false,
+                applicableOnModerator: true,
+                public: true,
+                args: false,
+            },
+
+            USERINFO: {
+                name: 'userinfo',
+                aliases: ['userinfo'],
+                category: 'misc',
+                description: "Renvoie des informations sur l'utilisateur",
+                cooldown: 0,
+                usage: ``,
+                needUser: true,
+                applicableOnModerator: true,
+                public: true,
+                args: true,
             },
         },
 
