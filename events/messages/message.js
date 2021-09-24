@@ -5,6 +5,35 @@ module.exports = {
 
     async execute( message, client ) {
         const settings = await client.getGuild(message.guild);
+        const dbUser = await client.getUser(message.member);
+
+        if(!dbUser) await client.createUser({
+            guildID:   message.member.guild.id,
+            guildName: message.member.guild.name,
+            userID:    message.member.id,
+            userName:  message.member.user.tag
+        });
+
+        const expCd = Math.floor(Math.random() * 5) + 1;
+        const expToAdd = Math.floor(Math.random() * 20) + 1;
+        
+        if(expCd === 1 && !message.author.bot) await client.addExp(client, message.member.user, expToAdd);
+
+        const userLevel = Math.floor(0.2 * Math.sqrt(dbUser.experience));
+
+        if(dbUser.level < userLevel)
+        {
+            message.reply(`bravo à toi, tu viens de monter au niveau ***${userLevel}*** ! Incroyable magueule !`);
+            client.updateUser(message.member, { level: userLevel });
+        }
+        else
+        {
+            if(dbUser.level > userLevel)
+            {
+                message.reply(`tu rettrogrades au niveau ***${userLevel}*** ! T'es chelou toi. !`);
+                client.updateUser(message.member, { level: userLevel });
+            }
+        }
 
         if( message.channel.type === "dm" ) return client.emit( "directMessage", message );
 
@@ -58,6 +87,6 @@ module.exports = {
         //#endregion
 
         // Exécution de la commande
-        command.run( client, message, args, settings );
+        command.run( client, message, args, settings, dbUser );
     },
 };

@@ -69,6 +69,47 @@ const MESSAGES = {
             },
         },
 
+        EXPERIENCE: {
+            ADDEXPERIENCE: {
+                name: 'addexperience',
+                aliases: ['addexperience'],
+                category: 'experience',
+                description: "Ajoute de l'experience à l'utilisateur.",
+                cooldown: 10,
+                usage: '<@user> <exp_to_add>',
+                needUser: true,
+                applicableOnModerator: false,
+                public: false,
+                args: true,
+            },
+
+            REMOVEEXPERIENCE: {
+                name: 'removeexperience',
+                aliases: ['removeexperience'],
+                category: 'experience',
+                description: "Retire de l'experience à l'utilisateur.",
+                cooldown: 10,
+                usage: '<@user> <exp_to_remove>',
+                needUser: true,
+                applicableOnModerator: false,
+                public: false,
+                args: true,
+            },
+
+            USEREXPERIENCE: {
+                name: 'userexperience',
+                aliases: ['userexperience'],
+                category: 'experience',
+                description: "Renvoie l'experience de l'utilisateur.",
+                cooldown: 10,
+                usage: '',
+                needUser: false,
+                applicableOnModerator: false,
+                public: true,
+                args: false,
+            },
+        },
+
         GAMES: {
             CARD: {
                 name: 'card',
