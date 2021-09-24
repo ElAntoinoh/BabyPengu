@@ -47,6 +47,12 @@ module.exports = {
             return;
         };
 
+        client.getUsers = async guild => {
+            const data = await User.find({ guildID: guild.id });
+            if(data) return data;
+            return;
+        };
+
         client.updateUser = async( user, settings ) => {
             let data = await client.getUser(user);
 

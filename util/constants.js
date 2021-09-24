@@ -83,6 +83,19 @@ const MESSAGES = {
                 args: true,
             },
 
+            LEADERBOARD: {
+                name: 'leaderboard',
+                aliases: ['leaderboard'],
+                category: 'experience',
+                description: "Affiche le classement des joueurs.",
+                cooldown: 10,
+                usage: '',
+                needUser: false,
+                applicableOnModerator: false,
+                public: true,
+                args: false,
+            },
+
             REMOVEEXPERIENCE: {
                 name: 'removeexperience',
                 aliases: ['removeexperience'],
