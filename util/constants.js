@@ -389,6 +389,19 @@ const MESSAGES = {
                 args: true,
             },
 
+            REPORT: {
+                name: 'report',
+                aliases: ['report'],
+                category: 'moderation',
+                description: 'Reporte un utilisateur.',
+                cooldown: 0,
+                usage: ``,
+                needUser: true,
+                applicableOnModerator: false,
+                public: true,
+                args: true,
+            },
+
             UNBAN: {
                 name: 'unban',
                 aliases: ['unban'],
