@@ -6,7 +6,7 @@ module.exports = {
     execute( member, client ) {
         const embed = new MessageEmbed()
             .setAuthor( `${member.displayName} (${member.id})`, member.user.displayAvatarURL() )
-            .setColor("#ffffff")
+            .setColor("#000000")
             .setFooter("Un utilisateur est parti")
             .setTimestamp();
         

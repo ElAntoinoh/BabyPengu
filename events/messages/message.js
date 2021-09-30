@@ -4,8 +4,9 @@ module.exports = {
     name: 'message',
 
     async execute( message, client ) {
-        const settings = await client.getGuild(message.guild);
-        const dbUser = await client.getUser(message.member);
+        //#region base de données
+        const settings = await client.getGuild( message.guild );
+        const dbUser = await client.getUser( message.member );
 
         if(!dbUser) await client.createUser({
             guildID:   message.member.guild.id,
@@ -14,36 +15,37 @@ module.exports = {
             userName:  message.member.user.tag
         });
 
-        const expCd = Math.floor(Math.random() * 5) + 1;
-        const expToAdd = Math.floor(Math.random() * 20) + 1;
+        const expCd = Math.floor( Math.random()*5 ) + 1;
+        const expToAdd = Math.floor( Math.random()*20 ) + 1;
         
-        if(expCd === 1 && !message.author.bot) await client.addExp(client, message.member.user, expToAdd);
+        if( expCd === 1 && !message.author.bot ) await client.addExp( client, message.member.user, expToAdd );
 
-        const userLevel = Math.floor(0.2 * Math.sqrt(dbUser.experience));
+        const userLevel = Math.floor(0.2 * Math.sqrt( dbUser.experience ));
 
-        if(dbUser.level < userLevel)
+        if( dbUser.level < userLevel )
         {
             message.reply(`bravo à toi, tu viens de monter au niveau ***${userLevel}*** ! Incroyable magueule !`);
-            client.updateUser(message.member, { level: userLevel });
+            client.updateUser( message.member, { level: userLevel } );
         }
         else
         {
-            if(dbUser.level > userLevel)
+            if( dbUser.level > userLevel )
             {
                 message.reply(`tu rettrogrades au niveau ***${userLevel}*** ! T'es chelou toi. !`);
-                client.updateUser(message.member, { level: userLevel });
+                client.updateUser( message.member, { level: userLevel } );
             }
         }
+        //#endregion
 
         if( message.channel.type === "dm" ) return client.emit( "directMessage", message );
 
         //#region Infos de base
-        if( !message.content.startsWith(settings.prefix) ) return;
+        if( !message.content.startsWith( settings.prefix ) ) return;
 
-        const args = message.content.slice(settings.prefix.length).split(/ +/); // Array contenant les arguments
+        const args = message.content.slice( settings.prefix.length ).split(/ +/); // Array contenant les arguments
 
         const commandName = args.shift().toLowerCase(); // Nom de la commande
-        const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName)); // Objet commande
+        const command = client.commands.get(commandName) || client.commands.find( cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName) ); // Objet commande
 
         const userMentioned = message.mentions.users.first(); // Premier utilisateur mentionné
         //#endregion
@@ -66,15 +68,15 @@ module.exports = {
         //#endregion
 
         //#region cooldown
-        if( !client.cooldowns.has(command.help.name) )
+        if( !client.cooldowns.has( command.help.name ) )
             client.cooldowns.set( command.help.name, new Collection() );
 
         const timeNow  = Date.now();
-        const tStamps  = client.cooldowns.get(command.help.name);
+        const tStamps  = client.cooldowns.get( command.help.name );
         const cdAmount = ( command.help.cooldown ) * 1000;
 
-        if( tStamps.has(message.author.id)) {
-            const cdExpirationTime = tStamps.get(message.author.id) + cdAmount;
+        if( tStamps.has( message.author.id ) ) {
+            const cdExpirationTime = tStamps.get( message.author.id ) + cdAmount;
 
             if( timeNow < cdExpirationTime ) {
                 timeLeft = ( cdExpirationTime - timeNow ) / 1000;
@@ -83,7 +85,7 @@ module.exports = {
         }
 
         tStamps.set( message.author.id, timeNow );
-        setTimeout( () => tStamps.delete(message.author.id), cdAmount );
+        setTimeout( () => tStamps.delete( message.author.id ), cdAmount );
         //#endregion
 
         // Exécution de la commande

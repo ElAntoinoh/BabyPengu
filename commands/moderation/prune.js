@@ -5,11 +5,11 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.MODERATION.PRUNE;
 
 module.exports.run = async ( client, message, args ) => {
-    let user = message.guild.member(message.mentions.users.first());
+    let user = message.guild.member( message.mentions.users.first() );
 
-    if( isNaN(args[1]) || args[1] < 1 ) return message.reply("il faut spécifier un nombre de messages à supprimer.");
+    if( isNaN( args[1] ) || args[1] < 1 ) return message.reply("il faut spécifier un nombre de messages à supprimer.");
 
-    const messages = (await message.channel.messages.fetch({
+    const messages = ( await message.channel.messages.fetch({
         before: message.id,
     })).filter( a => a.author.id === user.id ).array();
 
@@ -22,7 +22,7 @@ module.exports.run = async ( client, message, args ) => {
 
     const embed = new MessageEmbed()
         .setAuthor( `${message.author.username} ${message.author.id}`, message.author.displayAvatarURL() )
-        .setColor("#0000ff")
+        .setColor("#0000FF")
         .setDescription(`**Action**: prune\n**Utilisateur**: ${args[0]}\n**Nombre de messages**: ${args[1]}\n**Salon**: ${message.channel}`)
     
     client.channels.cache.get('816784812697714688').send(embed);

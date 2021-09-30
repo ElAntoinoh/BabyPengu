@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 const { MESSAGES } = require("../../util/constants");
 
-module.exports.help = MESSAGES.COMMANDS.MISC.STATS;
+module.exports.help = MESSAGES.COMMANDS.INFORMATIONS.STATS;
 
 module.exports.run = ( client, message, args ) => {
     message.guild.members.fetch().then(fetchAll => {

@@ -8,7 +8,8 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.INFORMATIONS.HELP;
 
 module.exports.run = ( client, message, args, settings ) => {
-    if( !args.length ) {
+    if( !args.length )
+    {
         const embed = new MessageEmbed()
             .setColor("#36393f")
             .addField("Liste des commandes", `Une liste de toutes les sous-catégories disponibles et leurs commandes\n
@@ -23,8 +24,9 @@ module.exports.run = ( client, message, args, settings ) => {
 
         return message.channel.send(embed);
     }
-    else {
-        const command = client.commands.get(args[0]) || client.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(args[0]));
+    else
+    {
+        const command = client.commands.get( args[0] ) || client.commands.find( cmd => cmd.help.aliases && cmd.help.aliases.includes( args[0] ) );
         if( !command ) return message.channel.send("Cette commande n'existe pas.");
 
         const embed = new MessageEmbed()

@@ -6,6 +6,8 @@ module.exports.run = async ( client, message, args, settings ) => {
     const getSetting = args[0];
     const newSetting = args.slice(1).join(" ");
 
+    await message.delete();
+
     switch(getSetting) {
         case "logChannel": {
             if(newSetting) {
@@ -14,7 +16,7 @@ module.exports.run = async ( client, message, args, settings ) => {
             }
             message.channel.send(`LogChannel actuel: \`${settings.logChannel}\``);
             break;
-        }
+        };
 
         case "prefix": {
             if(newSetting) {
@@ -23,7 +25,7 @@ module.exports.run = async ( client, message, args, settings ) => {
             }
             message.channel.send(`Prefix actuel: \`${settings.prefix}\``);
             break;
-        }
+        };
 
         case "welcomeMessage": {
             if(newSetting) {
@@ -32,6 +34,6 @@ module.exports.run = async ( client, message, args, settings ) => {
             }
             message.channel.send(`welcomeMessage actuel: \`${settings.welcomeMessage}\``);
             break;
-        }
-    }
+        };
+    };
 };

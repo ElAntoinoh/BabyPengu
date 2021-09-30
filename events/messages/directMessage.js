@@ -10,7 +10,7 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setAuthor(`${user.username} (${user.id})`)
-            .setColor("#ff00ff")
+            .setColor("#EE82EE")
             .setDescription(`**Action**: dm\n**Contenu**: ${message.content}`)
             .setTimestamp()
             .setFooter( user.username, user.avatarURL() );

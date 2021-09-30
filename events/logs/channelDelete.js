@@ -15,11 +15,11 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setAuthor("Suppression d'un salon")
-            .setColor("#ff00ff")
+            .setColor("#0000FF")
             .setDescription(`**Action**: suppression d'un salon\n**Nom**: ${channel.name}`)
             .setTimestamp()
             .setFooter( executor.username, executor.displayAvatarURL() );
 
     client.channels.cache.get('816784812697714688').send(embed);
     },
-}
+};

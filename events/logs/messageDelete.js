@@ -19,7 +19,7 @@ module.exports = {
 
             const embed = new MessageEmbed()
                 .setAuthor("Suppression d'un message")
-                .setColor("#ff00ff")
+                .setColor("#800000")
                 .setDescription(`**Action**: suppression d'un message\n**Salon**: ${message.channel.name}\n**Auteur**: ${message.author}\n**Contenu**: ${message.content}`)
                 .setTimestamp()
                 .setFooter( executor.username, executor.displayAvatarURL() );
@@ -27,4 +27,4 @@ module.exports = {
             client.channels.cache.get('816784812697714688').send(embed);
         }
     },
-}
+};

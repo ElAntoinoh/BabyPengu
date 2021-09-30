@@ -4,14 +4,14 @@ module.exports = {
     name: 'guildMemberAdd',
 
     async execute( member, client ) {
-        const settings = await client.getGuild(member.guild);
+        const settings = await client.getGuild( member.guild );
         let msg = settings.welcomeMessage;
 
-        if( msg.includes("{{user}}") ) msg = msg.replace("{{user}}", member);
+        if( msg.includes("{{user}}") ) msg = msg.replace("{{user}}", member );
 
         const embed = new MessageEmbed()
             .setAuthor( `${member.displayName} (${member.id})`, member.user.displayAvatarURL() )
-            .setColor("#ffffff")
+            .setColor("#FFFFFF")
             .setFooter("Un utilisateur a rejoint")
             .setTimestamp();
         

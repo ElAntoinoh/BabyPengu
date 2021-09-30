@@ -12,7 +12,7 @@ module.exports.run = ( client, message, args ) => {
 
     const embed = new MessageEmbed()
         .setAuthor( `${user.username} ${user.id}`, user.avatarURL() )
-        .setColor("#ff0000")
+        .setColor("#FF0000")
         .setDescription(`**Action**: kick\n**Raison**: ${reason}`)
         .setTimestamp()
         .setFooter( message.author.username, message.author.avatarURL() );

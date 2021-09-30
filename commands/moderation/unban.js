@@ -13,7 +13,7 @@ module.exports.run = async ( client, message, args ) => {
 
     const embed = new MessageEmbed()
         .setAuthor( `${user.username} ${user.id}`, user.displayAvatarURL() )
-        .setColor("#00ff00")
+        .setColor("#00FF00")
         .setDescription(`**Action**: unban`)
         .setTimestamp()
         .setFooter( message.author.username, message.author.avatarURL() );

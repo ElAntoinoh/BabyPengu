@@ -15,7 +15,7 @@ module.exports = {
             family: 4
         }
         
-        mongoose.connect(DBCONNECTION, mongOptions);
+        mongoose.connect( DBCONNECTION, mongOptions );
 
         mongoose.Promise = global.Promise;
 

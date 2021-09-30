@@ -22,8 +22,8 @@ module.exports.run = async ( client, message, args ) => {
             }
         });
     
-        message.guild.channels.cache.forEach(async (channel, id) => {
-            await channel.updateOverwrite(muteRole, {
+        message.guild.channels.cache.forEach( async ( channel, id ) => {
+            await channel.updateOverwrite( muteRole, {
                 SEND_MESSAGES: false,
                 ADD_REACTIONS: false,
                 CONNECT: false,
@@ -31,21 +31,25 @@ module.exports.run = async ( client, message, args ) => {
         });
     }
 
-    await user.roles.add(muteRole.id);
+    await user.roles.add( muteRole.id );
     await user.voice.kick();
 
     message.channel.send(`<@${user.id}> est mute pour ${ms(ms(muteTime))}.`);
 
     const embed = new MessageEmbed()
         .setAuthor( `${user.user.username} ${user.user.id}`, user.user.displayAvatarURL() )
-        .setColor("#ff0000")
+        .setColor("#FF0000")
         .setDescription(`**Action**: mute\n**Durée**: ${muteTime}`)
         .setTimestamp()
         .setFooter( message.author.username, message.author.avatarURL() );
-    
+
     client.channels.cache.get('816784812697714688').send(embed);
 
-    setTimeout( () => {
-        user.roles.remove(muteRole.id);
-    }, ms(muteTime) );
+    /*const channelID = message.guild.channels.cache.find( c => c.name = ( client.getGuild( message.guild ).logChannel ) ).id;
+
+    const channel = message.guild.channels.fetch( channelID );
+
+    channel.send("test");*/
+
+    setTimeout( () => { user.roles.remove( muteRole.id ); }, ms(muteTime) );
 };

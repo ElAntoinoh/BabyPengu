@@ -3,7 +3,7 @@ const moment = require("moment");
 
 const { MESSAGES } = require("../../util/constants");
 
-module.exports.help = MESSAGES.COMMANDS.MISC.USERINFO;
+module.exports.help = MESSAGES.COMMANDS.INFORMATIONS.USERINFO;
 
 module.exports.run = ( client, message, args ) => {
     let member = message.member;

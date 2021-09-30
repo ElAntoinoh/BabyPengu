@@ -3,7 +3,6 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.COLLECTORS.REACTCOLLECTOR;
 
 module.exports.run = ( client, message, args ) => {
-    //⭐
     const filter = reaction => reaction.emoji.name === '⭐';
     const collector = message.createReactionCollector(filter, { time: 10000 });
 

@@ -9,14 +9,14 @@ module.exports.run = async ( client, message ) => {
         .setColor("#a41f14")
         .setTimestamp()
         .setFooter("Experience");
-    
-    await client.getUsers(message.guild).then(p => {
-        p.sort((a, b) => (a.experience < b.experience) ? 1 : -1).splice(0, 10).
-            forEach(e => {
+
+    await client.getUsers( message.guild ).then( p => {
+        p.sort( ( a, b ) => ( a.experience < b.experience ) ? 1 : -1 ).splice( 0, 10 ).
+            forEach( e => {
                 console.log(e);
-                embed.addField(e.userName, `niveau ${e.level}`);
+                embed.addField( e.userName, `niveau ${e.level}` );
             });
     });
-    
+
     message.channel.send(embed);
 };

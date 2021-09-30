@@ -4,7 +4,7 @@ const { MESSAGES } = require("../../util/constants");
 
 module.exports.help = MESSAGES.COMMANDS.MODERATION.REPORT;
 
-const isFirstCharNumeric = c  => /\d/.test(c);
+const isFirstCharNumeric = c => /\d/.test(c);
 
 module.exports.run = async ( client, message, args ) => {
     const user = message.mentions.users.first();
@@ -13,8 +13,8 @@ module.exports.run = async ( client, message, args ) => {
     if(!raison) return message.reply("Indiquez une raison");
 
     const embed = new MessageEmbed()
-        .setAuthor(message.author.tag, message.author.displayAvatarURL())
-        .setThumbnail(user.displayAvatarURL())
+        .setAuthor( message.author.tag, message.author.displayAvatarURL() )
+        .setThumbnail( user.displayAvatarURL() )
         .addFields(
             {
                 name: "Reporté",
@@ -24,7 +24,7 @@ module.exports.run = async ( client, message, args ) => {
 
             {
                 name: "Lien du message",
-                value: isFirstCharNumeric(raison.charAt(0)) ?
+                value: isFirstCharNumeric( raison.charAt(0) ) ?
                     `[click me](https://discordapp.com/channels/${message.guild.id}/${message.channel.id}/${args[1]})` :
                     "Aucun lien précisé",
                 inline: true
@@ -32,9 +32,9 @@ module.exports.run = async ( client, message, args ) => {
 
             {
                 name: "Raison",
-                value: isFirstCharNumeric(raison.charAt(0)) ?
-                    args.slice(args.indexOf(args[2])).join(" ") :
-                    args.slice(args.indexOf(args[1])).join(" "),
+                value: isFirstCharNumeric( raison.charAt(0) ) ?
+                    args.slice( args.indexOf(args[2]) ).join(" ") :
+                    args.slice( args.indexOf(args[1]) ).join(" "),
                 inline: false
             }
         )
