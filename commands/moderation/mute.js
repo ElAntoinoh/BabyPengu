@@ -43,13 +43,9 @@ module.exports.run = async ( client, message, args ) => {
         .setTimestamp()
         .setFooter( message.author.username, message.author.avatarURL() );
 
-    client.channels.cache.get('816784812697714688').send(embed);
-
-    /*const channelID = message.guild.channels.cache.find( c => c.name = ( client.getGuild( message.guild ).logChannel ) ).id;
-
-    const channel = message.guild.channels.fetch( channelID );
-
-    channel.send("test");*/
+    let guild = await client.getGuild(message.guild);
+    
+    message.guild.channels.cache.find( c => c.id = guild.logChannel ).send(embed);
 
     setTimeout( () => { user.roles.remove( muteRole.id ); }, ms(muteTime) );
 };

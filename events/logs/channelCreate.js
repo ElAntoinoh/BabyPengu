@@ -22,6 +22,8 @@ module.exports = {
             .setTimestamp()
             .setFooter( executor.username, executor.displayAvatarURL() );
 
-    client.channels.cache.get('816784812697714688').send(embed);
+        let guild = await client.getGuild(channel.guild);
+
+        message.guild.channels.cache.find( c => c.id = guild.logChannel ).send(embed);
     },
 };

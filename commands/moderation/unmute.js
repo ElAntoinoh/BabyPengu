@@ -20,7 +20,9 @@ module.exports.run = async ( client, message, args ) => {
         .setTimestamp()
         .setFooter( message.author.username, message.author.avatarURL() );
     
-    client.channels.cache.get('816784812697714688').send(embed);
+    let guild = await client.getGuild(message.guild);
+
+    message.guild.channels.cache.find( c => c.id = guild.logChannel ).send(embed);
 
     message.channel.send(`<@${user.id}> n'est plus mute.`);
 };

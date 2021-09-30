@@ -4,7 +4,6 @@ module.exports = {
 
     execute(client) {
         console.log(`Logged in as ${client.user.tag}!`);
-        client.channels.cache.get('816784812697714688').send( "Bot opérationnel", {tts:true} );
 
         let activities = ['§help', 'JavaScript', "tileman.io"];
 

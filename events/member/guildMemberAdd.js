@@ -14,9 +14,9 @@ module.exports = {
             .setColor("#FFFFFF")
             .setFooter("Un utilisateur a rejoint")
             .setTimestamp();
-        
-        client.channels.cache.get('816784812697714688').send(msg);
-        client.channels.cache.get('816784812697714688').send(embed);
+
+        message.guild.channels.cache.find( c => c.id = settings.logChannel ).send(msg);
+        message.guild.channels.cache.find( c => c.id = settings.logChannel ).send(embed);
 
         const newUser = {
             guildID: member.guild.id,

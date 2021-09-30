@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: 'directMessage',
 
-    execute( message, client ) {
+    async execute ( message, client ) {
         const user = message.author;
 
         if( user.bot ) return;
@@ -17,6 +17,8 @@ module.exports = {
         
         user.send("Message reçu");
 
-        client.channels.cache.get("816784812697714688").send(embed);
+        let guild = await client.getGuild(message.guild);
+    
+        message.guild.channels.cache.find( c => c.id = guild.logChannel ).send(embed);
     },
 }

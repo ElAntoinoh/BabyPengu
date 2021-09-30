@@ -4,7 +4,7 @@ const { MESSAGES } = require("../../util/constants");
 
 module.exports.help = MESSAGES.COMMANDS.MODERATION.BAN;
 
-module.exports.run = ( client, message, args ) => {
+module.exports.run = async ( client, message, args ) => {
     const user = message.mentions.users.first();
     const reason = ( args.splice(1).join(' ') || "Pas de raison spécifiée" );
 
@@ -17,5 +17,7 @@ module.exports.run = ( client, message, args ) => {
         .setTimestamp()
         .setFooter( message.author.username, message.author.avatarURL() );
 
-    client.channels.cache.get('816784812697714688').send(embed);
+    let guild = await client.getGuild(message.guild);
+    
+    message.guild.channels.cache.find( c => c.id = guild.logChannel ).send(embed);
 };
