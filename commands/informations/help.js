@@ -33,7 +33,7 @@ module.exports.run = ( client, message, args, settings ) => {
             .setColor("#36393f")
             .setTitle(`- ${command.help.name} -`)
             .addField("Description", `${command.help.description}`)
-            .addField("Utilisation", command.help.usage ? `${command.help.name} ${command.help.usage}` : `${settings.prefix}${command.help.name}`, true)
+            .addField("Utilisation", command.help.usage ? `${command.help.usage}` : `${settings.prefix}${command.help.name}`, true)
         
         if( command.help.aliases.length > 1 ) embed.addField("Alias", `${command.help.aliases.join(', ')}`, true);
 

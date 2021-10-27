@@ -54,8 +54,11 @@ module.exports = {
         if( !command )
             return message.channel.send(`Cette commande n'existe pas.`);
 
-        if( !command.help.public && !message.member.roles.cache.has( message.guild.roles.cache.find( role => role.name === "Modérateur" ).id ) )
-            return message.channel.send("Tu n'as pas le droit d'utiliser cette commande.");
+        if( command.help.modo && !message.member.roles.cache.has( message.guild.roles.cache.find( role => role.name === "Modérateur" ).id ) )
+            return message.channel.send("Cette commande est réservée aux modérateurs");
+
+        if( !command.help.modo && !message.member.permissions.has("ADMINISTRATOR") )
+            return message.channel.send("Cette commande est réservée aux administrateurs");
 
         if( command.help.args && !args.length )
             return message.channel.send("Cette commande a besoin d'arguments");
