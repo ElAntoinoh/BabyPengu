@@ -4,7 +4,7 @@ const { MESSAGES } = require("../../util/constants");
 
 module.exports.help = MESSAGES.COMMANDS.MODERATION.CREATEROLE;
 
-module.exports.run = ( client, message, args ) => {
+module.exports.run = async ( client, message, args ) => {
     let nom, couleur;
     let r = g = b = 255; // blanc par défaut
 
@@ -24,11 +24,13 @@ module.exports.run = ( client, message, args ) => {
     else nom = args.join(" ");
 
     // Création du rôle
-    message.guild.roles.create({
+    await message.guild.roles.create({
         data: {
             name: nom,
             color: [r, g, b],
             permissions: 0,
         }
     });
+
+    message.channel.send(`Rôle ${message.guild.roles.cache.find(role => role.name === nom).name} créé !`);
 };

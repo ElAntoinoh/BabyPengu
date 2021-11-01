@@ -6,13 +6,13 @@ module.exports.run = async ( client, message, args, settings ) => {
     const getSetting = args[0];
     const newSetting = args.slice(1).join(" ");
 
-    await message.delete();
+    //await message.delete();
 
     switch(getSetting) {
         case "logChannel": {
             if(newSetting) {
                 await client.updateGuild( message.guild, { logChannel: newSetting } );
-                return message.channel.send(`LogChannel mit à jour: \`${settings.logChannel}\` -> \`${newSetting}\``);
+                return message.channel.send(`LogChannel mit à jour: \`${settings.logChannel} -> ${newSetting}\``);
             }
             message.channel.send(`LogChannel actuel: \`${settings.logChannel}\``);
             break;
@@ -21,19 +21,30 @@ module.exports.run = async ( client, message, args, settings ) => {
         case "prefix": {
             if(newSetting) {
                 await client.updateGuild( message.guild, { prefix: newSetting } );
-                return message.channel.send(`Prefix mit à jour: \`${settings.prefix}\` -> \`${newSetting}\``);
+                return message.channel.send(`Prefix mit à jour: \`${settings.prefix} -> ${newSetting}\``);
             }
             message.channel.send(`Prefix actuel: \`${settings.prefix}\``);
+            break;
+        };
+
+        case "moderationRole": {
+            if(newSetting) {
+                await client.updateGuild( message.guild, { moderationRole: newSetting } );
+                return message.channel.send(`Role de modération mit à jour: \`${settings.moderationRole} -> ${newSetting}\``);
+            }
+            message.channel.send(`Role de modération actuel: \`${settings.moderationRole}\``);
             break;
         };
 
         case "welcomeMessage": {
             if(newSetting) {
                 await client.updateGuild( message.guild, { welcomeMessage: newSetting } );
-                return message.channel.send(`welcomeMessage mit à jour: \`${settings.welcomeMessage}\` -> \`${newSetting}\``);
+                return message.channel.send(`welcomeMessage mit à jour: \`${settings.welcomeMessage} -> ${newSetting}\``);
             }
             message.channel.send(`welcomeMessage actuel: \`${settings.welcomeMessage}\``);
             break;
         };
     };
+
+    await message.delete();
 };

@@ -13,6 +13,10 @@ const guildSchema = mongoose.Schema({
         "type": String,
         "default": "",
     },
+    moderationRole: {
+        "type": String,
+        "default": "",
+    },
     welcomeMessage: {
         "type": String,
         "default": defaults.welcomeMessage,

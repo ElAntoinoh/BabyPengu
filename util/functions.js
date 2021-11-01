@@ -41,8 +41,8 @@ module.exports = {
             createUser.save().then( u => console.log(`Nouvel utilisateur ${u.userName}`) );
         }
 
-        client.getUser = async user => {
-            const data = await User.findOne({ userID: user.id });
+        client.getUser = async ( user, guild ) => {
+            const data = await User.findOne({ "userID": user.id, "guildID": guild.id });
             if(data) return data;
             return;
         };
@@ -53,8 +53,8 @@ module.exports = {
             return;
         };
 
-        client.updateUser = async( user, settings ) => {
-            let data = await client.getUser(user);
+        client.updateUser = async( user, guild, settings ) => {
+            let data = await client.getUser(user, guild);
 
             if( typeof data != "object" ) data = {};
 
@@ -65,16 +65,16 @@ module.exports = {
             return data.updateOne(settings);
         };
 
-        client.addExp = async( client, member, exp ) => {
-            const userToUpdate = await client.getUser(member);
+        client.addExp = async( client, guild, member, exp ) => {
+            const userToUpdate = await client.getUser(member, guild);
             const updatedExp = userToUpdate.experience + exp;
-            await client.updateUser(member, { experience: updatedExp});
+            await client.updateUser(member, guild, { experience: updatedExp });
         };
 
-        client.removeExp = async( client, member, exp ) => {
-            const userToUpdate = await client.getUser(member);
+        client.removeExp = async( client, guild, member, exp ) => {
+            const userToUpdate = await client.getUser(member, guild);
             const updatedExp = userToUpdate.experience - exp;
-            await client.updateUser(member, { experience: updatedExp});
+            await client.updateUser(member, guild, { experience: updatedExp});
         };
     },
 };

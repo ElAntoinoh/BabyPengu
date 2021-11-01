@@ -18,7 +18,7 @@ module.exports.run = ( client, message, args ) => {
             `Plus d'informations à propos de **${user.username}** ${member.nickname === undefined ? '' : `( aka **${member.nickname}** )`}`,
             `▪ Nom: ${user.tag}
             ▪ Bot: ${user.bot ? 'true' : 'false'}
-            ▪ Créé le: ${moment(user.createdAt).format('DD/MM/YYYY | hh:mm')}
+            ▪ Créé le: ${moment(user.createdAt).format('DD/MM/YYYY | hh:mm a')}
             ▪ Status: ${user.presence.status}
             `
         )

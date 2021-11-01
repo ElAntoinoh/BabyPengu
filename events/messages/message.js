@@ -5,8 +5,8 @@ module.exports = {
 
     async execute( message, client ) {
         //#region base de données
-        const settings = await client.getGuild( message.guild );
-        const dbUser = await client.getUser( message.member );
+        const settings = await client.getGuild( message.guild                 );
+        const dbUser   = await client.getUser ( message.member, message.guild );
 
         if(!dbUser) await client.createUser({
             guildID:   message.member.guild.id,
@@ -18,21 +18,21 @@ module.exports = {
         const expCd = Math.floor( Math.random()*5 ) + 1;
         const expToAdd = Math.floor( Math.random()*20 ) + 1;
         
-        if( expCd === 1 && !message.author.bot ) await client.addExp( client, message.member.user, expToAdd );
+        if( expCd === 1 && !message.author.bot ) await client.addExp( client, message.guild, message.member.user, expToAdd );
 
         const userLevel = Math.floor(0.2 * Math.sqrt( dbUser.experience ));
 
         if( dbUser.level < userLevel )
         {
             message.reply(`bravo à toi, tu viens de monter au niveau ***${userLevel}*** ! Incroyable magueule !`);
-            client.updateUser( message.member, { level: userLevel } );
+            client.updateUser( message.member, message.guild, { level: userLevel } );
         }
         else
         {
             if( dbUser.level > userLevel )
             {
                 message.reply(`tu rettrogrades au niveau ***${userLevel}*** ! T'es chelou toi. !`);
-                client.updateUser( message.member, { level: userLevel } );
+                client.updateUser( message.member, message.guild, { level: userLevel } );
             }
         }
         //#endregion
@@ -51,14 +51,15 @@ module.exports = {
         //#endregion
 
         //#region contrôle arguments
-        if( !command )
-            return message.channel.send(`Cette commande n'existe pas.`);
+        if( !command ) return message.channel.send(`Cette commande n'existe pas.`);
 
-        if( command.help.modo && !message.member.roles.cache.has( message.guild.roles.cache.find( role => role.name === "Modérateur" ).id ) )
-            return message.channel.send("Cette commande est réservée aux modérateurs");
+        if( message.guild.roles.cache.find( role => role.name === settings.moderationRole ) ) { // S'il existe un role de modération
+            if( !command.help.public && !message.member.roles.cache.has( message.guild.roles.cache.find( role => role.name === settings.moderationRole ).id ) )
+                return message.channel.send("Cette commande est réservée aux modérateurs");
 
-        if( !command.help.modo && !message.member.permissions.has("ADMINISTRATOR") )
-            return message.channel.send("Cette commande est réservée aux administrateurs");
+            if( !command.help.modo && !message.member.permissions.has("ADMINISTRATOR") )
+                return message.channel.send("Cette commande est réservée aux administrateurs");
+        }
 
         if( command.help.args && !args.length )
             return message.channel.send("Cette commande a besoin d'arguments");
@@ -66,7 +67,7 @@ module.exports = {
         if( command.help.needUser && !userMentioned )
             return message.channel.send("Cette commande a besoin de la mention d'un utilisateur");
 
-        if( ( userMentioned && !command.help.applicableOnModerator && message.guild.member(userMentioned).roles.cache.has( message.guild.roles.cache.find( role => role.name === "Modérateur" ).id ) ) && !( userMentioned && userMentioned === message.author ) )
+        if( ( userMentioned && !command.help.applicableOnModerator && message.guild.member(userMentioned).roles.cache.has( message.guild.roles.cache.find( role => role.name === settings.moderationRole ).id ) ) && !( userMentioned && userMentioned === message.author ) )
             return message.channel.send("Tu n'as pas le droit d'utiliser cette commande sur cet utilisateur.");
         //#endregion
 

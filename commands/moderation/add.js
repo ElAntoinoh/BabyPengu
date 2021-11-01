@@ -12,7 +12,7 @@ module.exports.run = ( client, message, args ) => {
             if( role.permissions.has('ADMINISTRATOR') )     return message.channel.send("Je n'ai pas le droit d'ajouter ce rôle :(");
 
             message.member.roles.add(role)
-                .then( m => message.channel.send(`Tu as maintenant le rôle ${role} !`) )
+                .then( m => message.channel.send(`Tu as maintenant le rôle ${roleName} !`) )
                 .catch( e => console.log(e) );
         }
         else return message.channel.send("Je ne connais pas ce rôle :(");
