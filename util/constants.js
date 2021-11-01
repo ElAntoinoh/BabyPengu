@@ -249,6 +249,20 @@ const MESSAGES = {
                 args: false,
             },
 
+            MATH: {
+                name: 'math',
+                aliases: ['math'],
+                category: 'misc',
+                description: 'Fais des calculs pour vous.',
+                cooldown: 5,
+                usage: '<clacul>',
+                needUser: false,
+                applicableOnModerator: true,
+                modo: true,
+                public: true,
+                args: true,
+            },
+
             PING: {
                 name: 'ping',
                 aliases: ['ping'],
@@ -318,6 +332,20 @@ const MESSAGES = {
                 applicableOnModerator: true,
                 modo: true,
                 public: true,
+                args: true,
+            },
+
+            ADDACCESS: {
+                name: 'addaccess',
+                aliases: ['addaccess'],
+                category: 'moderation',
+                description: 'Authorise les utilisateurs mentionnés à accéder au salon courant.',
+                cooldown: 5,
+                usage: `<@utilisateurs>`,
+                needUser: true,
+                applicableOnModerator: true,
+                modo: true,
+                public: false,
                 args: true,
             },
 
@@ -391,6 +419,20 @@ const MESSAGES = {
                 args: true,
             },
 
+            NEWPRIVATECHANNEL: {
+                name: 'newprivatechannel',
+                aliases: ['newprivatechannel'],
+                category: 'moderation',
+                description: 'Crée un channel privé dans une certaine catégorie.',
+                cooldown: 5,
+                usage: `<category_id> <name>`,
+                needUser: false,
+                applicableOnModerator: true,
+                modo: true,
+                public: false,
+                args: true,
+            },
+
             PRUNE: {
                 name: 'prune',
                 aliases: ['prune'],
@@ -430,6 +472,20 @@ const MESSAGES = {
                 applicableOnModerator: true,
                 modo: true,
                 public: true,
+                args: true,
+            },
+
+            REMOVEACCESS: {
+                name: 'removeaccess',
+                aliases: ['removeaccess'],
+                category: 'moderation',
+                description: 'Empêche les utilisateurs mentionnés d\'accéder au salon courant.',
+                cooldown: 5,
+                usage: `<@utilisateurs>`,
+                needUser: true,
+                applicableOnModerator: true,
+                modo: true,
+                public: false,
                 args: true,
             },
 

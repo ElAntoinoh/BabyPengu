@@ -11,14 +11,13 @@ module.exports.run = async ( client, message, args ) => {
         .setDescription( args.join(" ") )
         .addField("Répondre à la question ci-dessous à l'aide des réactions",
         `
-        👍 - pour
-
-        👎 - contre
+        ✅ - pour
+        ❌ - contre
         `)
         .setTimestamp();
     
     const poll = await message.channel.send(embed);
 
-    await poll.react("👍");
-    await poll.react("👎");
+    await poll.react("✅");
+    await poll.react("❌");
 };

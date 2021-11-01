@@ -22,6 +22,6 @@ module.exports = {
 
         let guild = await client.getGuild(channel.guild);
 
-        message.guild.channels.cache.find( c => c.id = guild.logChannel ).send(embed);
+        channel.guild.channels.cache.find( c => c.id = guild.logChannel ).send(embed);
     },
 };

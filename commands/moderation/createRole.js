@@ -28,6 +28,7 @@ module.exports.run = ( client, message, args ) => {
         data: {
             name: nom,
             color: [r, g, b],
+            permissions: 0,
         }
     });
 };
