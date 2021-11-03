@@ -82,11 +82,11 @@ const MESSAGES = {
                 description: "Ajoute de l'experience à l'utilisateur mentionné.",
                 cooldown: 5,
                 usage: '<@user> <exp_to_add>',
-                needUser: true,
+                needUser: false,
                 applicableOnModerator: true,
                 modo: true,
                 public: false,
-                args: true,
+                args: false,
             },
 
             LEADERBOARD: {
@@ -110,11 +110,11 @@ const MESSAGES = {
                 description: "Retire de l'experience à l'utilisateur mentionné.",
                 cooldown: 5,
                 usage: '<@user> <exp_to_remove>',
-                needUser: true,
+                needUser: false,
                 applicableOnModerator: false,
                 modo: true,
                 public: false,
-                args: true,
+                args: false,
             },
 
             USEREXPERIENCE: {

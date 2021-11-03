@@ -54,7 +54,7 @@ module.exports = {
         };
 
         client.updateUser = async( user, guild, settings ) => {
-            let data = await client.getUser(user, guild);
+            let data = await client.getUser( user, guild );
 
             if( typeof data != "object" ) data = {};
 
@@ -66,15 +66,17 @@ module.exports = {
         };
 
         client.addExp = async( client, guild, member, exp ) => {
-            const userToUpdate = await client.getUser(member, guild);
+            const userToUpdate = await client.getUser( member, guild );
             const updatedExp = userToUpdate.experience + exp;
-            await client.updateUser(member, guild, { experience: updatedExp });
+
+            await client.updateUser( member, guild, { experience: updatedExp } );
         };
 
         client.removeExp = async( client, guild, member, exp ) => {
-            const userToUpdate = await client.getUser(member, guild);
+            const userToUpdate = await client.getUser( member, guild );
             const updatedExp = userToUpdate.experience - exp;
-            await client.updateUser(member, guild, { experience: updatedExp});
+
+            await client.updateUser( member, guild, { experience: updatedExp} );
         };
     },
 };

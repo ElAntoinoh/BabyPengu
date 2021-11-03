@@ -15,7 +15,7 @@ module.exports = {
 
         const { executor } = latestMessageDeleted;
         
-        if( !message.content.startsWith(settings.prefix) )
+        if( !message.content.startsWith(settings.prefix) && message.author.bot )
         {
             const embed = new MessageEmbed()
                 .setAuthor("Suppression d'un message")

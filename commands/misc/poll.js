@@ -20,4 +20,6 @@ module.exports.run = async ( client, message, args ) => {
 
     await poll.react("✅");
     await poll.react("❌");
+
+    message.delete();
 };

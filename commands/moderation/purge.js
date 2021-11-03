@@ -5,7 +5,7 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.MODERATION.PURGE;
 
 module.exports.run = async ( client, message, args ) => {
-    message.delete();
+    await message.delete();
 
     if( isNaN( args[0] ) || args[0] < 1 ) return message.reply("il faut spécifier un nombre entier.");
 
@@ -23,6 +23,9 @@ module.exports.run = async ( client, message, args ) => {
     
     let guild = await client.getGuild(message.guild);
 
-    tmp = message.channel.send(`✅ Suppression de ${args[0]} messages avec succès !`);
     message.guild.channels.cache.find( c => c.id = guild.logChannel ).send(embed);
+
+    message.channel.send(`✅ Suppression de ${args[0]} messages avec succès !`);
+
+    setTimeout( function(){ message.channel.lastMessage.delete(); }, 3000 )
 };
