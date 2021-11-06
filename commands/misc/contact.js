@@ -6,6 +6,8 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.MISC.CONTACT;
 
 module.exports.run = ( client, message, args ) => {
+    message.delete();
+    
     const embed = new MessageEmbed()
         .setTitle("Suivez l'Île de Chybre !")
         .setColor("#ffffff")

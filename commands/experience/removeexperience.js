@@ -15,7 +15,7 @@ module.exports.run = async ( client, message, args ) => {
 
     if( isNaN(expToRemove) ) return message.reply("Il faut entrer un nombre.");
 
-    client.removeExp( client, message.guild, member, expToRemove );
+    client.removeExp( client, member, expToRemove );
 
     message.channel.send(`Retrait de ${expToRemove} xp à ${member.nickname ? member.nickname : member.user.username} !`);
     message.guild.channels.cache.find( c => c.id = settings.logChannel ).send(`**${message.author.tag}** a retiré **${expToRemove}** xp à **${member.user.tag}**.`);

@@ -9,18 +9,16 @@ module.exports.run = async ( client, message, args ) => {
 
     let user = message.guild.member( message.mentions.users.first() );
 
-    if( isNaN( args[1] ) || args[1] < 1 ) return message.reply("syntaxe: <@user> <nombre_entier>");
+    if( !user || isNaN( args[1] ) || args[1] < 1 ) return message.reply("syntaxe: <@user> <nombre_entier>");
 
     const messages = ( await message.channel.messages.fetch({
         before: message.id,
     })).filter( a => a.author.id === user.id ).array();
 
-    if( messages.length === 0 || !user ) return message.reply("Pas de messages à supprimer sur cet utilisateur");
+    if( messages.length === 0 ) return message.reply("Pas de messages à supprimer sur cet utilisateur");
 
     messages.length = args[1];
 
-    /*if( messages.length === 1 ) await messages[0].delete();
-    else await message.channel.bulkDelete(messages);*/
     await message.channel.bulkDelete(messages);
 
     const embed = new MessageEmbed()

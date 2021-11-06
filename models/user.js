@@ -3,8 +3,6 @@ const { DEFAULTSETTINGS: defaults } = require("../../config");
 
 const userSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    guildID: String,
-    guildName: String,
     userID: String,
     userName: String,
     experience: {

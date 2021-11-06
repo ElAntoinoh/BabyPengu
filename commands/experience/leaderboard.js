@@ -5,7 +5,7 @@ module.exports.help = MESSAGES.COMMANDS.EXPERIENCE.LEADERBOARD;
 
 module.exports.run = async ( client, message ) => {
     const embed = new MessageEmbed()
-        .setTitle("Top 10 des utilisateurs sur le serveur")
+        .setTitle("Top 10 des utilisateurs du bot")
         .setColor("#a41f14")
         .setTimestamp()
         .setFooter("Experience");

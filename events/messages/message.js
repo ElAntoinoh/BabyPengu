@@ -5,34 +5,34 @@ module.exports = {
 
     async execute( message, client ) {
         //#region base de données
-        const settings = await client.getGuild( message.guild                 );
-        const dbUser   = await client.getUser ( message.member, message.guild );
+        const settings = await client.getGuild( message.guild  );
+        let   dbUser   = await client.getUser ( message.member );
 
-        if(!dbUser) await client.createUser({
-            guildID:   message.member.guild.id,
-            guildName: message.member.guild.name,
-            userID:    message.member.id,
-            userName:  message.member.user.tag
-        });
+        if( !message.author.bot ) {
+            if(!dbUser) dbUser = await client.createUser({
+                userID:    message.member.id,
+                userName:  message.member.user.tag
+            });
 
-        const expCd = Math.floor( Math.random()*5 ) + 1;
-        const expToAdd = Math.floor( Math.random()*20 ) + 1;
-        
-        if( expCd === 1 && !message.author.bot ) await client.addExp( client, message.guild, message.member.user, expToAdd );
+            let expToAdd;
+            message.content.includes(settings.prefix) ? expToAdd = 5 : expToAdd = 1;
 
-        const userLevel = Math.floor(0.2 * Math.sqrt( dbUser.experience ));
+            await client.addExp( message.member, expToAdd );
 
-        if( dbUser.level < userLevel )
-        {
-            message.reply(`bravo à toi, tu viens de monter au niveau ***${userLevel}*** ! Incroyable magueule !`);
-            client.updateUser( message.member, message.guild, { level: userLevel } );
-        }
-        else
-        {
-            if( dbUser.level > userLevel )
+            const userLevel = Math.floor(0.25 * Math.sqrt( dbUser.experience ));
+
+            if( dbUser.level < userLevel )
             {
-                message.reply(`tu rettrogrades au niveau ***${userLevel}*** ! T'es chelou toi. !`);
-                client.updateUser( message.member, message.guild, { level: userLevel } );
+                message.reply(`bravo à toi, tu viens de monter au niveau ***${userLevel}*** ! Incroyable magueule !`);
+                client.updateUser( message.member, { level: userLevel } );
+            }
+            else
+            {
+                if( dbUser.level > userLevel )
+                {
+                    message.reply(`tu rettrogrades au niveau ***${userLevel}*** ! T'es chelou toi. !`);
+                    client.updateUser( message.member, { level: userLevel } );
+                }
             }
         }
         //#endregion

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Guild, User } = require("../models/index");
+const user = require("../models/user");
 
 module.exports = {
     name: 'functions',
@@ -38,23 +39,23 @@ module.exports = {
 
             const createUser = await new User(merge);
 
-            createUser.save().then( u => console.log(`Nouvel utilisateur ${u.userName}`) );
-        }
+            createUser.save().then( u => console.log(`Nouvel utilisateur : ${u.userName}`) );
 
-        client.getUser = async ( user, guild ) => {
-            const data = await User.findOne({ "userID": user.id, "guildID": guild.id });
+            return createUser;
+        };
+
+        client.getUser = async ( member ) => {
+            const data = await User.findOne({ userID: member.id });
             if(data) return data;
             return;
         };
 
         client.getUsers = async guild => {
-            const data = await User.find({ guildID: guild.id });
-            if(data) return data;
-            return;
+            return User.find();
         };
 
-        client.updateUser = async( user, guild, settings ) => {
-            let data = await client.getUser( user, guild );
+        client.updateUser = async( member, settings ) => {
+            let data = await client.getUser( member );
 
             if( typeof data != "object" ) data = {};
 
@@ -65,18 +66,18 @@ module.exports = {
             return data.updateOne(settings);
         };
 
-        client.addExp = async( client, guild, member, exp ) => {
-            const userToUpdate = await client.getUser( member, guild );
-            const updatedExp = userToUpdate.experience + exp;
+        client.addExp = async( member, expToAdd ) => {
+            const userToUpdate = await client.getUser( member );
+            const updatedExp = userToUpdate.experience + expToAdd;
 
-            await client.updateUser( member, guild, { experience: updatedExp } );
+            await client.updateUser( member, { experience: updatedExp } );
         };
 
-        client.removeExp = async( client, guild, member, exp ) => {
-            const userToUpdate = await client.getUser( member, guild );
-            const updatedExp = userToUpdate.experience - exp;
+        client.removeExp = async( member, expToRemove ) => {
+            const userToUpdate = await client.getUser( member );
+            const updatedExp = userToUpdate.experience - expToRemove;
 
-            await client.updateUser( member, guild, { experience: updatedExp} );
+            await client.updateUser( member, { experience: updatedExp} );
         };
     },
 };

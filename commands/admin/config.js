@@ -6,8 +6,6 @@ module.exports.run = async ( client, message, args, settings ) => {
     const getSetting = args[0];
     const newSetting = args.slice(1).join(" ");
 
-    //await message.delete();
-
     switch(getSetting) {
         case "logChannel": {
             if(newSetting) {

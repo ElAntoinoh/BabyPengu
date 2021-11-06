@@ -4,7 +4,7 @@ module.exports = {
     name: 'messageDelete',
 
     async execute( message, client ) {
-        const settings = await client.getGuild(message.guild);
+        const settings = await client.getGuild( message.guild );
 
         const fetchGuildAuditLogs = await message.guild.fetchAuditLogs({
             limit: 1,
@@ -14,8 +14,8 @@ module.exports = {
         const latestMessageDeleted = fetchGuildAuditLogs.entries.first();
 
         const { executor } = latestMessageDeleted;
-        
-        if( !message.content.startsWith(settings.prefix) && message.author.bot )
+
+        if( !message.author.bot && !message.content.startsWith(settings.prefix) )
         {
             const embed = new MessageEmbed()
                 .setAuthor("Suppression d'un message")
