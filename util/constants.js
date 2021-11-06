@@ -235,6 +235,20 @@ const MESSAGES = {
                 args: true,
             },
 
+            BIRTHDAY: {
+                name: 'birthday',
+                aliases: ['birthday', 'anniversaire', 'anniv'],
+                category: 'misc',
+                description: 'Ajoute, supprime ou annonce la date d\'anniversaire d\'un utilisateur mentionné',
+                cooldown: 5,
+                usage: `add <@user> <ddmm>\ndel <@user>\nof <@user>`,
+                needUser: true,
+                applicableOnModerator: true,
+                modo: true,
+                public: true,
+                args: true,
+            },
+
             CONTACT: {
                 name: 'contact',
                 aliases: ['contact', 'idc', 'iledechybre'],

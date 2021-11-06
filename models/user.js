@@ -13,6 +13,10 @@ const userSchema = mongoose.Schema({
         "type": Number,
         "default": 0,
     },
+    birthday: {
+        "type": String,
+        "default": "0000",
+    },
 });
 
 module.exports = mongoose.model("User", userSchema);
