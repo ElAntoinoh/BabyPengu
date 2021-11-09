@@ -14,4 +14,6 @@ module.exports.run = ( client, message, args ) => {
             }).catch( console.error );
         }
     });
+
+    message.channel.send("Changements effectués !");
 };

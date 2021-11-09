@@ -1,4 +1,5 @@
 const { Collection } = require('discord.js');
+const { sluDependencies } = require('mathjs');
 
 module.exports = {
     name: 'message',
@@ -9,17 +10,19 @@ module.exports = {
         let   dbUser   = await client.getUser ( message.member );
 
         if( !message.author.bot ) {
-            if(!dbUser) dbUser = await client.createUser({
-                userID:    message.member.id,
-                userName:  message.member.user.tag
-            });
+            if(!dbUser) {
+                dbUser = await client.createUser({
+                    userID:    message.member.id,
+                    userName:  message.member.user.tag
+                });
+            }
 
             let expToAdd;
             message.content.includes(settings.prefix) ? expToAdd = 5 : expToAdd = 1;
 
-            await client.addExp( message.member, expToAdd );
+            setTimeout( function(){ client.addExp( message.member, expToAdd ); }, 50 );
 
-            const userLevel = Math.floor(0.25 * Math.sqrt( dbUser.experience ));
+            const userLevel = Math.floor(0.5 * Math.sqrt( dbUser.experience ));
 
             if( dbUser.level < userLevel )
             {
@@ -53,8 +56,8 @@ module.exports = {
         //#region contrôle arguments
         if( !command ) return message.channel.send(`Cette commande n'existe pas.`);
 
-        if( message.guild.roles.cache.find( role => role.name === settings.moderationRole ) ) { // S'il existe un role de modération
-            if( !command.help.public && !message.member.roles.cache.has( message.guild.roles.cache.find( role => role.name === settings.moderationRole ).id ) )
+        if( message.guild.roles.cache.find( role => role.id === settings.moderationRole ) ) { // S'il existe un role de modération
+            if( !command.help.public && !message.member.roles.cache.has( message.guild.roles.cache.find( role => role.id === settings.moderationRole ).id ) )
                 return message.channel.send("Cette commande est réservée aux modérateurs");
 
             if( !command.help.modo && !message.member.permissions.has("ADMINISTRATOR") )
@@ -67,7 +70,7 @@ module.exports = {
         if( command.help.needUser && !userMentioned )
             return message.channel.send("Cette commande a besoin de la mention d'un utilisateur");
 
-        if( ( userMentioned && !command.help.applicableOnModerator && message.guild.member(userMentioned).roles.cache.has( message.guild.roles.cache.find( role => role.name === settings.moderationRole ).id ) ) && !( userMentioned && userMentioned === message.author ) )
+        if( ( userMentioned && !command.help.applicableOnModerator && message.guild.member(userMentioned).roles.cache.has( message.guild.roles.cache.find( role => role.name === settings.moderationRole ) ) ) && !( userMentioned && userMentioned === message.author ) )
             return message.channel.send("Tu n'as pas le droit d'utiliser cette commande sur cet utilisateur.");
         //#endregion
 

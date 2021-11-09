@@ -12,12 +12,12 @@ module.exports.run = ( client, message, args ) => {
             let role = message.guild.roles.cache.find( role => role.name === roleName.toString() );
 
             if(role) {
-                if( !user.roles.cache.has( role.id ) )      return message.channel.send(`${user.toString()} n'a pas le rôle ${role}.`);
+                if( !user.roles.cache.has( role.id ) )      return message.channel.send(`${user.toString()} n'a pas le rôle **${roleName}**.`);
 
                 if( role.permissions.has('ADMINISTRATOR') ) return message.channel.send("Je n'ai pas le droit de retirer ce rôle :(");
 
                 user.roles.remove(role)
-                    .then( m => message.channel.send(`${user.toString()} n'a plus le rôle ${role} !`) )
+                    .then( m => message.channel.send(`${user.toString()} n'a plus le rôle **${roleName}** !`) )
                     .catch( e => console.log(e));
             }
             else

@@ -10,7 +10,7 @@ module.exports.run = async ( client, message, args ) => {
     const member = message.guild.member( message.mentions.users.first() );
 
     switch(param) {
-        case "update":
+        case "set":
             if( !member ) return message.channel.send("Erreur de syntaxe. <@user> <ddmm>");
 
             const date = args[2];
@@ -36,6 +36,6 @@ module.exports.run = async ( client, message, args ) => {
             else                           return message.channel.send( user.birthday.slice(0, 2) + "/" + user.birthday.slice(2) );
 
         default:
-            return message.reply("Erreur dans les paramètres. Utilisez 'update', 'del' ou 'of'.");
+            return message.reply("Erreur dans les paramètres. Utilisez 'set', 'del' ou 'of'.");
     };
 };

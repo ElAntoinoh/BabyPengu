@@ -10,4 +10,6 @@ module.exports.run = ( client, message, args ) => {
         if( !channel.permissionOverwrites.get(user.id) ) message.channel.send(`L'utilisateur **${user.tag}** n'a pas de permissions d'accès à ce salon.`);
         else channel.permissionOverwrites.get(user.id).delete();
     });
+
+    message.channel.send("Changements effectués !");
 };

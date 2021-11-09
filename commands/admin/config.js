@@ -42,6 +42,8 @@ module.exports.run = async ( client, message, args, settings ) => {
             message.channel.send(`welcomeMessage actuel: \`${settings.welcomeMessage}\``);
             break;
         };
+
+        default: return message.channel.send("Paramètres configurables: **logChannel**, **prefix**, **moderationRole**, **welcomeMessage**");
     };
 
     await message.delete();

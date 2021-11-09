@@ -15,7 +15,7 @@ module.exports.run = async ( client, message, args ) => {
 
     if( isNaN(expToAdd) ) return message.reply("Il faut entrer un nombre.");
 
-    client.addExp( client, member, expToAdd );
+    client.addExp( member, expToAdd );
 
     message.channel.send(`Ajout de ${expToAdd} xp à ${member.nickname ? member.nickname : member.user.username} !`);
     message.guild.channels.cache.find( c => c.id = settings.logChannel ).send(`**${message.author.tag}** a ajouté **${expToAdd}** xp à **${member.user.tag}**.`);
