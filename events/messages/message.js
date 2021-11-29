@@ -40,7 +40,7 @@ module.exports = {
         }
         //#endregion
 
-        if( message.channel.type === "dm" ) return client.emit( "directMessage", message );
+        if( message.channel.type === "dm" ) return client.emit( "directMessage", message ); // message privé
 
         //#region Infos de base
         if( !message.content.startsWith( settings.prefix ) ) return;
