@@ -3,6 +3,8 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.MODERATION.ADDACCESS;
 
 module.exports.run = ( client, message, args ) => {
+    message.delete();
+
     const users = message.mentions.users;
     const channel = message.channel;
 
@@ -15,5 +17,7 @@ module.exports.run = ( client, message, args ) => {
         }
     });
 
-    message.channel.send("Changements effectués !");
+    message.channel.send("Changements effectués !").then(msg => {
+	setTimeout(() => msg.delete(), 3000)
+    });
 };

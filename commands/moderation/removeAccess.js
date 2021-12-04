@@ -3,6 +3,8 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.MODERATION.REMOVEACCESS;
 
 module.exports.run = ( client, message, args ) => {
+    message.delete();
+
     const users = message.mentions.users;
     const channel = message.channel;
 
@@ -11,5 +13,7 @@ module.exports.run = ( client, message, args ) => {
         else channel.permissionOverwrites.get(user.id).delete();
     });
 
-    message.channel.send("Changements effectués !");
+    message.channel.send("Changements effectués !").then(msg => {
+	setTimeout(() => msg.delete(), 3000)
+    });
 };

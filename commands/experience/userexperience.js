@@ -5,7 +5,6 @@ module.exports.help = MESSAGES.COMMANDS.EXPERIENCE.USEREXPERIENCE;
 
 module.exports.run = async ( client, message, args, settings, dbUser ) => {
     const member = message.guild.member( message.mentions.users.first() );
-    console.log(member);
 
     const embed = new MessageEmbed();
 

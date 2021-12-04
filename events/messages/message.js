@@ -26,15 +26,21 @@ module.exports = {
 
             if( dbUser.level < userLevel )
             {
-                message.reply(`bravo à toi, tu viens de monter au niveau ***${userLevel}*** ! Incroyable magueule !`);
                 client.updateUser( message.member, { level: userLevel } );
+                message.reply(`bravo à toi, tu viens de monter au niveau ***${userLevel}*** ! Incroyable magueule !`)
+                    .then(msg => {
+                        setTimeout(() => msg.delete(), 5000)
+                    });
             }
             else
             {
                 if( dbUser.level > userLevel )
                 {
-                    message.reply(`tu rettrogrades au niveau ***${userLevel}*** ! T'es chelou toi. !`);
                     client.updateUser( message.member, { level: userLevel } );
+                    message.reply(`tu rettrogrades au niveau ***${userLevel}*** ! T'es chelou toi. !`)
+                        .then(msg => {
+                            setTimeout(() => msg.delete(), 5000)
+                        });
                 }
             }
         }

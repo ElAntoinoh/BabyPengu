@@ -538,7 +538,7 @@ const MESSAGES = {
                 description: 'Unban un utilisateur.',
                 cooldown: 5,
                 usage: `<user_id>`,
-                needUser: true,
+                needUser: false,
                 applicableOnModerator: false,
                 modo: true,
                 public: false,
