@@ -1,6 +1,6 @@
 const { MESSAGES } = require("../../util/constants");
 
-module.exports.help = MESSAGES.COMMANDS.MODERATION.ADDTO;
+module.exports.help = MESSAGES.COMMANDS.ROLES.ADDTO;
 
 module.exports.run = ( client, message, args ) => {
     member = message.guild.member( message.mentions.users.first() );

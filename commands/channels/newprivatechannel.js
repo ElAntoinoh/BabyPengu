@@ -1,6 +1,6 @@
 const { MESSAGES } = require("../../util/constants");
 
-module.exports.help = MESSAGES.COMMANDS.MODERATION.NEWPRIVATECHANNEL;
+module.exports.help = MESSAGES.COMMANDS.CHANNELS.NEWPRIVATECHANNEL;
 
 module.exports.run = ( client, message, args ) => {
     const categoryID = args[0];

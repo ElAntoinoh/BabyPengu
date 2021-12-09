@@ -1,6 +1,6 @@
 const { MESSAGES } = require("../../util/constants");
 
-module.exports.help = MESSAGES.COMMANDS.MODERATION.REMOVEFROM;
+module.exports.help = MESSAGES.COMMANDS.ROLES.REMOVEFROM;
 
 module.exports.run = ( client, message, args ) => {
     user = message.guild.member( message.mentions.users.first() );

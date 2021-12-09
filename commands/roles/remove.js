@@ -1,6 +1,6 @@
 const { MESSAGES } = require("../../util/constants");
 
-module.exports.help = MESSAGES.COMMANDS.MODERATION.REMOVE;
+module.exports.help = MESSAGES.COMMANDS.ROLES.REMOVE;
 
 module.exports.run = ( client, message, args ) => {
     args.forEach(roleName => {

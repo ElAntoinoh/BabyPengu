@@ -2,7 +2,7 @@ const { MessageEmbed, MessageAttachment } = require("discord.js");
 
 const { MESSAGES } = require("../../util/constants");
 
-module.exports.help = MESSAGES.COMMANDS.MODERATION.CREATEROLE;
+module.exports.help = MESSAGES.COMMANDS.ROLES.CREATEROLE;
 
 module.exports.run = async ( client, message, args ) => {
     let nom, couleur;
