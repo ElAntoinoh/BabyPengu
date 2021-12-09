@@ -291,20 +291,6 @@ const MESSAGES = {
                 args: false,
             },
 
-            POLL: {
-                name: 'poll',
-                aliases: ['poll', 'sondage'],
-                category: 'misc',
-                description: 'Crée un sondage.',
-                cooldown: 5,
-                usage: '<question>',
-                needUser: false,
-                applicableOnModerator: true,
-                modo: true,
-                public: true,
-                args: true,
-            },
-            
             ROLL: {
                 name: 'roll',
                 aliases: ['roll', 'de'],
@@ -326,6 +312,20 @@ const MESSAGES = {
                 description: 'Fait parler BabyPengu.',
                 cooldown: 0,
                 usage: `<message>`,
+                needUser: false,
+                applicableOnModerator: true,
+                modo: true,
+                public: true,
+                args: true,
+            },
+
+            VOTE: {
+                name: 'vote',
+                aliases: ['vote', 'sondage'],
+                category: 'misc',
+                description: 'Crée un sondage.',
+                cooldown: 0,
+                usage: '<question>',
                 needUser: false,
                 applicableOnModerator: true,
                 modo: true,

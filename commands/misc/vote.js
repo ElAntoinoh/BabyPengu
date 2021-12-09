@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 const { MESSAGES } = require("../../util/constants");
 
-module.exports.help = MESSAGES.COMMANDS.MISC.POLL;
+module.exports.help = MESSAGES.COMMANDS.MISC.VOTE;
 
 module.exports.run = async ( client, message, args ) => {
     embed = new MessageEmbed()
@@ -11,15 +11,15 @@ module.exports.run = async ( client, message, args ) => {
         .setDescription( args.join(" ") )
         .addField("Répondre à la question ci-dessous à l'aide des réactions",
         `
-        ✅ - pour
-        ❌ - contre
+        ✅ - Oui
+        ❌ - Non
         `)
         .setTimestamp();
     
-    const poll = await message.channel.send(embed);
+    const vote = await message.channel.send(embed);
 
-    await poll.react("✅");
-    await poll.react("❌");
+    await vote.react("✅");
+    await vote.react("❌");
 
     message.delete();
 };
