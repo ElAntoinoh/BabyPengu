@@ -5,8 +5,6 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.MISC.ASK;
 
 module.exports.run = ( client, message, args ) => {
-    message.delete();
-
     const replies = [
         "Oui", "Certainement", "Absolument", "Ba oui", "Bien évidemment",
         "Non", "Certainement pas", "Clairement pas", "Ba non", "J'espère que tu te moques de moi",
@@ -21,4 +19,6 @@ module.exports.run = ( client, message, args ) => {
         .addField( question, replies[response] );
 
     message.channel.send(embed);
+
+    message.delete();
 };

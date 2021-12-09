@@ -6,8 +6,6 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.MISC.ROLL;
 
 module.exports.run = ( client, message, args ) => {
-    message.delete();
-
     var resultat;
 
     const embed = new MessageEmbed()
@@ -34,4 +32,6 @@ module.exports.run = ( client, message, args ) => {
     };
     
     message.channel.send(embed);
+
+    message.delete();
 };

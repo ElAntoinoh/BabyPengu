@@ -6,8 +6,6 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.MISC.MATH;
 
 module.exports.run = async (client, message, args) => {
-    message.delete();
-    
     let calcul;
 
     try {
@@ -22,4 +20,6 @@ module.exports.run = async (client, message, args) => {
         .addField('Résutlat', calcul);
     
     message.channel.send(embed);
+
+    message.delete();
 };
