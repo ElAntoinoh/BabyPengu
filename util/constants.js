@@ -537,31 +537,17 @@ const MESSAGES = {
         },
 
         ROLES: {
-            ADD: {
-                name: 'add',
-                aliases: ['add', 'addrole'],
+            ADDROLE: {
+                name: 'addrole',
+                aliases: ['addrole'],
                 category: 'roles',
                 description: 'Ajoute un ou plusieurs rôles.',
                 cooldown: 5,
-                usage: `<role_name> ... <role_name> : ajoute les rôles passés en paramètre`,
+                usage: ``,
                 needUser: false,
                 applicableOnModerator: true,
                 modo: true,
                 public: true,
-                args: true,
-            },
-
-            ADDTO: {
-                name: 'addto',
-                aliases: ['addto', 'addroleto'],
-                category: 'roles',
-                description: 'Ajoute un ou plusieurs rôles à un utilisateur mentionné.',
-                cooldown: 5,
-                usage: `<@user> <role_name> ... <role_name> : ajoute les rôles à l\'utilisateur`,
-                needUser: true,
-                applicableOnModerator: false,
-                modo: true,
-                public: false,
                 args: true,
             },
 
@@ -578,10 +564,10 @@ const MESSAGES = {
                 public: false,
                 args: true,
             },
-
-            REMOVE: {
-                name: 'remove',
-                aliases: ['remove', 'removerole'],
+            
+            REMOVEROLE: {
+                name: 'removerole',
+                aliases: ['removerole'],
                 category: 'roles',
                 description: 'Retire un ou plusieurs rôles.',
                 cooldown: 5,
@@ -593,19 +579,6 @@ const MESSAGES = {
                 args: true,
             },
 
-            REMOVEFROM: {
-                name: 'removefrom',
-                aliases: ['removefrom', 'removerolefrom'],
-                category: 'roles',
-                description: 'Retire un ou plusieurs rôles à un utilisateur mentionné.',
-                cooldown: 5,
-                usage: `<@user> <role> ... <role> : retire tous les rôles passés en paramètre à l\'utilisateur`,
-                needUser: true,
-                applicableOnModerator: false,
-                modo: true,
-                public: false,
-                args: true,
-            },
         },
     },
 };
