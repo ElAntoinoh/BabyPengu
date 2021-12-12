@@ -11,4 +11,6 @@ module.exports.run = ( client, message, args ) => {
         parent: categoryID,
         permissionOverwrites: message.channel.permissionOverwrites,
     });
+
+    message.delete();
 };

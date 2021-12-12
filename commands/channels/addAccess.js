@@ -7,15 +7,15 @@ module.exports.run = ( client, message, args ) => {
     const roles = message.mentions.roles;
 
     const channel = message.channel;
-    const voiceChannel = channel.parent.children.filter( c => c.type === "voice" ).filter( c => c.name === channel.name );
+    const voiceChannels = channel.parent.children.filter( c => c.type === "voice" ).filter( c => c.name === channel.name );
     
     users.forEach( user => {
         channel.updateOverwrite( user, {
             VIEW_CHANNEL: true,
         }).catch( console.error );
 
-        if( voiceChannel.length != 0 ) {
-            voiceChannel.forEach( c => {
+        if( voiceChannels.length != 0 ) {
+            voiceChannels.forEach( c => {
                 c.updateOverwrite( user, {
                     VIEW_CHANNEL: true,
                 }).catch( console.error );
@@ -29,8 +29,8 @@ module.exports.run = ( client, message, args ) => {
                 VIEW_CHANNEL: true,
             }).catch( console.error );
 
-            if( voiceChannel.length != 0 ) {
-                voiceChannel.forEach( c => {
+            if( voiceChannels.length != 0 ) {
+                voiceChannels.forEach( c => {
                     c.updateOverwrite( member.user, {
                         VIEW_CHANNEL: true,
                     }).catch( console.error );

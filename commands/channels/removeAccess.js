@@ -7,13 +7,13 @@ module.exports.run = ( client, message, args ) => {
     const roles = message.mentions.roles;
 
     const channel = message.channel;
-    const voiceChannel = channel.parent.children.filter( c => c.type === "voice" ).filter( c => c.name === channel.name );
+    const voiceChannels = channel.parent.children.filter( c => c.type === "voice" ).filter( c => c.name === channel.name );
 
     users.forEach( user => {
         if( channel.permissionOverwrites.get(user.id) ) channel.permissionOverwrites.get(user.id).delete();
         
-        if( voiceChannel.length != 0 ) {
-            voiceChannel.forEach( c => {
+        if( voiceChannels.length != 0 ) {
+            voiceChannels.forEach( c => {
                 if( c.permissionOverwrites.get(user.id) ) c.permissionOverwrites.get(user.id).delete();
             });
         }
@@ -23,8 +23,8 @@ module.exports.run = ( client, message, args ) => {
         roles.members.forEach( member => {
             if( channel.permissionOverwrites.get(member.user.id) ) channel.permissionOverwrites.get(member.user.id).delete();
 
-            if( voiceChannel.length != 0 ) {
-                voiceChannel.forEach( c => {
+            if( voiceChannels.length != 0 ) {
+                voiceChannels.forEach( c => {
                     if( c.permissionOverwrites.get(member.user.id) ) c.permissionOverwrites.get(member.user.id).delete();
                 });
             }
