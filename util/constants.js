@@ -52,7 +52,7 @@ const MESSAGES = {
                 description: 'Authorise les utilisateurs mentionnés à accéder au salon courant.',
                 cooldown: 5,
                 usage: `<@user>`,
-                needUser: true,
+                needUser: false,
                 applicableOnModerator: true,
                 modo: true,
                 public: false,
@@ -73,6 +73,20 @@ const MESSAGES = {
                 args: true,
             },
 
+            NEWVOICECHANNEL: {
+                name: 'newvoicechannel',
+                aliases: ['newvoicechannel'],
+                category: 'channels',
+                description: 'Crée un channel vocal dans la même catégorie que le channel courant.',
+                cooldown: 5,
+                usage: ``,
+                needUser: false,
+                applicableOnModerator: true,
+                modo: true,
+                public: false,
+                args: false,
+            },
+
             REMOVEACCESS: {
                 name: 'removeaccess',
                 aliases: ['removeaccess'],
@@ -80,7 +94,7 @@ const MESSAGES = {
                 description: 'Empêche les utilisateurs mentionnés d\'accéder au salon courant.',
                 cooldown: 5,
                 usage: `<@users>`,
-                needUser: true,
+                needUser: false,
                 applicableOnModerator: true,
                 modo: true,
                 public: false,
