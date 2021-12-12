@@ -4,11 +4,18 @@ module.exports.help = MESSAGES.COMMANDS.CHANNELS.REMOVEACCESS;
 
 module.exports.run = ( client, message, args ) => {
     const users = message.mentions.users;
+    const roles = message.mentions.roles;
+
     const channel = message.channel;
 
     users.forEach( user => {
-        if( !channel.permissionOverwrites.get(user.id) ) message.channel.send(`L'utilisateur **${user.tag}** n'a pas de permissions d'accès à ce salon.`);
-        else channel.permissionOverwrites.get(user.id).delete();
+        if( channel.permissionOverwrites.get(user.id) ) channel.permissionOverwrites.get(user.id).delete();
+    });
+
+    roles.forEach( roles => {
+        roles.members.forEach( member => {
+            if( channel.permissionOverwrites.get(member.user.id) ) channel.permissionOverwrites.get(member.user.id).delete();
+        });
     });
 
     message.channel.send("Changements effectués !").then(msg => {

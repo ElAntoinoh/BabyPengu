@@ -4,15 +4,22 @@ module.exports.help = MESSAGES.COMMANDS.CHANNELS.ADDACCESS;
 
 module.exports.run = ( client, message, args ) => {
     const users = message.mentions.users;
+    const roles = message.mentions.roles;
+
     const channel = message.channel;
 
     users.forEach( user => {
-        if( channel.permissionOverwrites.get(user.id) ) message.channel.send(`L'utilisateur **${user.tag}** a déjà accès à ce salon.`);
-        else {
-            channel.updateOverwrite( user, {
+        channel.updateOverwrite( user, {
+            VIEW_CHANNEL: true,
+        }).catch( console.error );
+    });
+
+    roles.forEach( role => {
+        role.members.forEach( member => {
+            channel.updateOverwrite( member.user, {
                 VIEW_CHANNEL: true,
             }).catch( console.error );
-        }
+        });
     });
 
     message.channel.send("Changements effectués !").then(msg => {
