@@ -7,11 +7,20 @@ module.exports.run = ( client, message, args ) => {
     const roles = message.mentions.roles;
 
     const channel = message.channel;
-
+    const voiceChannel = channel.parent.children.filter( c => c.type === "voice" ).filter( c => c.name === channel.name );
+    
     users.forEach( user => {
         channel.updateOverwrite( user, {
             VIEW_CHANNEL: true,
         }).catch( console.error );
+
+        if( voiceChannel.length != 0 ) {
+            voiceChannel.forEach( c => {
+                c.updateOverwrite( user, {
+                    VIEW_CHANNEL: true,
+                }).catch( console.error );
+            });
+        }
     });
 
     roles.forEach( role => {
@@ -19,6 +28,14 @@ module.exports.run = ( client, message, args ) => {
             channel.updateOverwrite( member.user, {
                 VIEW_CHANNEL: true,
             }).catch( console.error );
+
+            if( voiceChannel.length != 0 ) {
+                voiceChannel.forEach( c => {
+                    c.updateOverwrite( member.user, {
+                        VIEW_CHANNEL: true,
+                    }).catch( console.error );
+                });
+            }
         });
     });
 
