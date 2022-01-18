@@ -14,8 +14,6 @@ module.exports.run = ( client, message, args, settings ) => {
             let role = message.guild.roles.cache.find( role => role.name === roleName );
 
             if(role) {
-                message.channel.send(role);
-
                 if( member.roles.cache.has( role.id ) )
                     return message.channel.send(`Rôle **${roleName}** déjà possédé.`).then(msg => {
                         setTimeout(() => msg.delete(), 3000)
@@ -27,9 +25,12 @@ module.exports.run = ( client, message, args, settings ) => {
                     });
 
                 member.roles.add(role.id)
-                    .then( m => message.channel.send(`Rôle **${roleName}** ajouté avec succès !`) )
                     .catch( e => console.log(e) );
             }
         });
+    });
+
+    message.channel.send("Changements effectués !").then(msg => {
+        setTimeout(() => msg.delete(), 3000)
     });
 };

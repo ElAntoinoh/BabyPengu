@@ -78,7 +78,7 @@ const MESSAGES = {
                 aliases: ['newlinkedchannel'],
                 category: 'channels',
                 description: 'Crée un channel textuel jumeau au channel courant.',
-                cooldown: 5,
+                cooldown: 0,
                 usage: `<name>`,
                 needUser: false,
                 applicableOnModerator: true,
