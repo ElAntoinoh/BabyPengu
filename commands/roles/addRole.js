@@ -33,4 +33,6 @@ module.exports.run = ( client, message, args, settings ) => {
     message.channel.send("Changements effectués !").then(msg => {
         setTimeout(() => msg.delete(), 3000)
     });
+
+    message.delete();
 };
