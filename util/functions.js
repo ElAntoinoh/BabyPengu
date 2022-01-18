@@ -66,6 +66,10 @@ module.exports = {
             return data.updateOne(settings);
         };
 
+        client.setPermissionLevel = async( member, newLevel ) => {
+            await client.updateUser( member, { permissionLevel: newLevel } );
+        }
+
         client.addExp = async( member, expToAdd ) => {
             const userToUpdate = await client.getUser( member );
             const updatedExp = userToUpdate.experience + expToAdd;

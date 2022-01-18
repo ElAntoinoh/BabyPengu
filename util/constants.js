@@ -519,6 +519,20 @@ const MESSAGES = {
                 args: true,
             },
 
+            SETPERMISSIONLEVEL: {
+                name: 'setpermissionlevel',
+                aliases: ['setpermissionlevel', 'setperms'],
+                category: 'moderation',
+                description: 'Change le degré de permissions des utilisateurs passés en paramètre.',
+                cooldown: 5,
+                usage: `<@utilisateurs> <0-10>`,
+                needUser: true,
+                applicableOnModerator: true,
+                modo: true,
+                public: true,
+                args: true,
+            },
+
             UNBAN: {
                 name: 'unban',
                 aliases: ['unban', 'deban'],
