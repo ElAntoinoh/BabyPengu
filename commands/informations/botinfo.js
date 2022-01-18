@@ -5,7 +5,7 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.INFORMATIONS.BOTINFO;
 
 module.exports.run = ( client, message, args ) => {
-    const embed = new MessageEmbed()
+    message.channel.send( new MessageEmbed()
         .setColor("#b4e0e0")
         .setAuthor(`${client.user.username} Info`, client.user.avatarURL)
         .addFields(
@@ -16,7 +16,6 @@ module.exports.run = ( client, message, args ) => {
             { name: 'Utilisateurs', value: `${client.guilds.cache.map(g => g.memberCount).reduce((a, b) => a + b)}`, inline: true },
             { name: '\u200b',       value: `\u200b`,                                                                 inline: true },
             { name: 'Source',       value: `[GitHub](https://github.com/ElAntoinoh/BabyPengu)`,                      inline: true },
-        );
-    
-    message.channel.send(embed);
+        )
+    );
 };

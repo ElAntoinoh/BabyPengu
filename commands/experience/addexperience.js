@@ -17,6 +17,6 @@ module.exports.run = async ( client, message, args ) => {
 
     client.addExp( member, expToAdd );
 
-    message.channel.send(`Ajout de ${expToAdd} xp à ${member.nickname ? member.nickname : member.user.username} !`);
+    message.channel.send(`Ajout de **${expToAdd}** xp à **${member.nickname ? member.nickname : member.user.username}** !`);
     message.guild.channels.cache.find( c => c.id = settings.logChannel ).send(`**${message.author.tag}** a ajouté **${expToAdd}** xp à **${member.user.tag}**.`);
 };

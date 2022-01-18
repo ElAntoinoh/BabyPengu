@@ -3,25 +3,33 @@ const { MessageMentions: {USERS_PATTERN} } = require('discord.js');
 
 module.exports.help = MESSAGES.COMMANDS.ROLES.ADDROLE;
 
-module.exports.run = ( client, message, args ) => {
-    if( args[0].match(USERS_PATTERN) ) {
-        member = message.mentions.members.first();
-        args.shift();
-    }
-    else member = message.guild.member( message.author );
+module.exports.run = ( client, message, args, settings ) => {
+    let members = [];
 
-    args.forEach( roleName => {
-        let role = message.guild.roles.cache.find( role => role.name === roleName.toString() );
+    if( message.mentions.length != 0 ) members    = message.mentions.members;
+    else                               members[0] = message.guild.member( message.author );
 
-        if(role) {
-            if( member.roles.cache.has( role.id ) )     return message.channel.send(`Rôle **${roleName}** déjà possédé.`);
+    members.forEach( member => {
+        args.forEach( roleName => {
+            let role = message.guild.roles.cache.find( role => role.name === roleName );
 
-            if( role.permissions.has('ADMINISTRATOR') ) return message.channel.send("Je n'ai pas le droit d'ajouter ce rôle :(");
+            if(role) {
+                message.channel.send(role);
 
-            member.roles.add(role)
-                .then( m => message.channel.send(`Rôle **${roleName}** ajouté avec succès !`) )
-                .catch( e => console.log(e) );
-        }
-        else return message.channel.send("Je ne connais pas ce rôle :(");
+                if( member.roles.cache.has( role.id ) )
+                    return message.channel.send(`Rôle **${roleName}** déjà possédé.`).then(msg => {
+                        setTimeout(() => msg.delete(), 3000)
+                    });
+
+                if( role.permissions.has('ADMINISTRATOR') || role.id == settings.moderationRole )
+                    return message.channel.send(`Je n'ai pas le droit d'ajouter le rôle **${roleName}** :(`).then(msg => {
+                        setTimeout(() => msg.delete(), 3000)
+                    });
+
+                member.roles.add(role.id)
+                    .then( m => message.channel.send(`Rôle **${roleName}** ajouté avec succès !`) )
+                    .catch( e => console.log(e) );
+            }
+        });
     });
 };

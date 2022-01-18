@@ -24,5 +24,5 @@ module.exports.run = async ( client, message, args ) => {
 
     message.guild.channels.cache.find( c => c.id = guild.logChannel ).send(embed);
 
-    message.channel.send(`<@${user.id}> n'est plus mute.`);
+    message.channel.send(`**<@${user.id}>** n'est plus mute.`);
 };

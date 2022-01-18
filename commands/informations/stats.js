@@ -11,17 +11,16 @@ module.exports.run = ( client, message, args ) => {
         const offline = fetchAll.filter( m => m.presence.status === 'offline' );
         const dnd     = fetchAll.filter( m => m.presence.status === 'dnd'     );
 
-        const embed = new MessageEmbed()
+        message.channel.send( new MessageEmbed()
             .setColor("#dc143c")
             .setTitle(`Statistiques de ${message.guild.name}`)
             .addFields(
-                { name: "membres"        , value: fetchAll.size-1 },
-                { name: "en ligne"       , value: online  .size-1 },
-                { name: "innactif"       , value: idle    .size   },
-                { name: "ne pas déranger", value: dnd     .size   },
-                { name: "hors ligne"     , value: offline .size   },
-            );
-
-        message.channel.send(embed);
+                { name: "membres"        , value: fetchAll.size },
+                { name: "en ligne"       , value: online  .size },
+                { name: "innactif"       , value: idle    .size },
+                { name: "ne pas déranger", value: dnd     .size },
+                { name: "hors ligne"     , value: offline .size },
+            )
+        );
     });
 };

@@ -12,7 +12,12 @@ module.exports.run = async ( client, message, args ) => {
         before: message.id,
     });
 
-    await message.channel.bulkDelete(messages);
+    try {
+        await message.channel.bulkDelete(messages)
+    } catch {
+        return message.channel.send("Je n'ai plus accès à ces messages. Les messages datant de plus de deux semaines me sont innaccessible :(")
+            .then(msg => { setTimeout(() => msg.delete(), 5000) });
+    }
 
     const embed = new MessageEmbed()
         .setAuthor( `${message.author.username} ${message.author.id}`, message.author.displayAvatarURL() )
@@ -23,9 +28,10 @@ module.exports.run = async ( client, message, args ) => {
 
     message.guild.channels.cache.find( c => c.id = guild.logChannel ).send(embed);
 
-    message.channel.send(`✅ Suppression de ${args[0]} messages avec succès !`);
-
-    setTimeout( function(){ message.channel.lastMessage.delete(); }, 3000 )
+    message.channel.send(`✅ Suppression de ${args[0]} messages avec succès !`)
+        .then(msg => {
+            setTimeout(() => msg.delete(), 3000)
+    });
 
     message.delete();
 };

@@ -17,6 +17,6 @@ module.exports.run = async ( client, message, args ) => {
 
     client.removeExp( member, expToRemove );
 
-    message.channel.send(`Retrait de ${expToRemove} xp à ${member.nickname ? member.nickname : member.user.username} !`);
+    message.channel.send(`Retrait de **${expToRemove}** xp à **${member.nickname ? member.nickname : member.user.username}** !`);
     message.guild.channels.cache.find( c => c.id = settings.logChannel ).send(`**${message.author.tag}** a retiré **${expToRemove}** xp à **${member.user.tag}**.`);
 };

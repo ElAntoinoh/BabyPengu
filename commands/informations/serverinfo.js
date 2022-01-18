@@ -8,7 +8,7 @@ module.exports.help = MESSAGES.COMMANDS.INFORMATIONS.SERVERINFO;
 module.exports.run = ( client, message, args ) => {
     const guild = message.guild;
 
-    const embed = new MessageEmbed()
+    message.channel.send( new MessageEmbed()
         .setColor("#C016FF")
         .setThumbnail(guild.iconURL())
         .addField(`Plus d'informations à propos de ${guild.name}`,
@@ -23,7 +23,6 @@ module.exports.run = ( client, message, args ) => {
             ▪ Roles: ${guild.roles.cache.size}
             ▪ Membres: ${guild.memberCount}
             `
-        );
-    
-    message.channel.send(embed);
+        )
+    );
 };

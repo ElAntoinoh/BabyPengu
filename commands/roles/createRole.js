@@ -9,7 +9,7 @@ module.exports.run = async ( client, message, args ) => {
     let r = g = b = 255; // blanc par défaut
 
     if( args[args.length-1].startsWith("#") ) { // Rôle coloré
-        nom = args.slice(0, args.length-1).join(" ");
+        nom = args.slice(0, args.length-1).join("-");
 
         couleur = args[args.length-1].slice(1);
 
@@ -21,7 +21,7 @@ module.exports.run = async ( client, message, args ) => {
             message.channel.send("Format de couleur invalide. Format requis: '#xxxxxx'");
         }
     }
-    else nom = args.join(" ");
+    else nom = args.join("-");
 
     // Création du rôle
     await message.guild.roles.create({
@@ -32,5 +32,5 @@ module.exports.run = async ( client, message, args ) => {
         }
     });
 
-    message.channel.send(`Rôle ${message.guild.roles.cache.find(role => role.name === nom).name} créé !`);
+    message.channel.send(`Rôle **${message.guild.roles.cache.find(role => role.name === nom).name}** créé !`);
 };

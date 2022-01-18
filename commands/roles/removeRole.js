@@ -3,7 +3,7 @@ const { MessageMentions: {USERS_PATTERN} } = require('discord.js');
 
 module.exports.help = MESSAGES.COMMANDS.ROLES.REMOVEROLE;
 
-module.exports.run = ( client, message, args ) => {
+module.exports.run = ( client, message, args, settings ) => {
     if( args[0].match(USERS_PATTERN) ) {
         member = message.mentions.members.first();
         args.shift();
@@ -14,9 +14,11 @@ module.exports.run = ( client, message, args ) => {
         let role = message.guild.roles.cache.find( role => role.name === roleName.toString() );
 
         if(role) {
-            if( !member.roles.cache.has( role.id ) )    return message.channel.send(`Rôle **${roleName}** non possédé.`);
+            if( !member.roles.cache.has( role.id ) )
+                return message.channel.send(`Rôle **${roleName}** non possédé.`);
 
-            if( role.permissions.has('ADMINISTRATOR') ) return message.channel.send("Je n'ai pas le droit de retirer ce rôle :(");
+            if( role.permissions.has('ADMINISTRATOR') || role.id == settings.moderationRole )
+                return message.channel.send("Je n'ai pas le droit de retirer ce rôle :(");
 
             member.roles.remove(role)
                 .then( m => message.channel.send(`Retrait du rôle **${roleName}** avec succès !`) )

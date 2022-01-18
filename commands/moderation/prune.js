@@ -19,7 +19,12 @@ module.exports.run = async ( client, message, args ) => {
 
     messages.length = args[1];
 
-    await message.channel.bulkDelete(messages);
+    try {
+        await message.channel.bulkDelete(messages)
+    } catch {
+        return message.channel.send("Je n'ai plus accès à ces messages. Les messages datant de plus de deux semaines me sont innaccessible :(")
+            .then(msg => { setTimeout(() => msg.delete(), 5000) });
+    }
 
     const embed = new MessageEmbed()
         .setAuthor( `${message.author.username} ${message.author.id}`, message.author.displayAvatarURL() )
