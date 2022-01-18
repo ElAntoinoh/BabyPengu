@@ -232,6 +232,20 @@ const MESSAGES = {
                 public: true,
                 args: false,
             },
+
+            RPC: {
+                name: 'rpc',
+                aliases: ['rpc', 'pfc', 'chifoumi'],
+                category: 'games',
+                description: 'Joue une manche de pierre feuille ciseaux avec toi.',
+                cooldown: 0,
+                usage: '<Pierre/Feuille/Ciseaux>',
+                needUser: false,
+                applicableOnModerator: true,
+                modo: true,
+                public: true,
+                args: true,
+            },
         },
 
         INFORMATIONS: {
