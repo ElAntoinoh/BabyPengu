@@ -12,7 +12,8 @@ module.exports.run = async ( client, message, args ) => {
 
     let executor = await client.getUser(message.member);
     
-    if( executor.permissionLevel <= newLevel ) return message.reply("Tu n'es pas autorisé à accorder autant de permissions.");
+    for( var i = 0; i < executor.permissions.length; i++ )
+        if( executor.permissions[i][1] <= newLevel ) return message.reply("Tu n'es pas autorisé à accorder autant de permissions.");
 
     members.forEach( m => {
         client.setPermissionLevel( m, newLevel );

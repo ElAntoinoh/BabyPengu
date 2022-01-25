@@ -14,5 +14,6 @@ module.exports.run = async ( client, message, args ) => {
     const code = args.join(" ");
     const evaled = eval(code);
     const cleanCode = await clean(evaled);
-    message.channel.send( cleanCode, { code: "js" } );
+
+    if( cleanCode != undefined ) message.channel.send( cleanCode, { code: "js" } );
 };

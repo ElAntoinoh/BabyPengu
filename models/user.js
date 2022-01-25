@@ -5,9 +5,9 @@ const userSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     userID: String,
     userName: String,
-    permissionLevel: {
-        "type": Number,
-        "default": 0,
+    permissions: {
+        "type": Array,
+        "default": [],
     },
     experience: {
         "type": Number,

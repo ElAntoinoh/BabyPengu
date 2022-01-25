@@ -67,7 +67,22 @@ module.exports = {
         };
 
         client.setPermissionLevel = async( member, newLevel ) => {
-            await client.updateUser( member, { permissionLevel: newLevel } );
+            const userToUpdate = await client.getUser(member);
+
+            let exists = false;
+
+            try {
+                for( var i = 0; i < userToUpdate.permissions.length; i++ ) {
+                    if( userToUpdate.permissions[i][0] === member.guild.id ) {
+                        userToUpdate.permissions[i][1] = newLevel;
+                        exists = true;
+                    }
+                }
+
+                if( !exists ) await userToUpdate.permissions.push( [ member.guild.id, newLevel ] );
+                
+                await client.updateUser( member, { permissions: userToUpdate.permissions } );
+            } catch(error) {};
         }
 
         client.addExp = async( member, expToAdd ) => {
