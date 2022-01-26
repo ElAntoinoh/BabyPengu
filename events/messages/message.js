@@ -13,12 +13,24 @@ module.exports = {
             if(!dbUser) {
                 dbUser = await client.createUser({
                     userID:    message.member.id,
-                    userName:  message.member.user.tag
+                    userName:  message.member.user.tag,
                 });
             }
 
-            let expToAdd;
-            message.content.includes(settings.prefix) ? expToAdd = 5 : expToAdd = 1;
+            let exists = false;
+            
+            for( var i = 0; i < dbUser.permissions.length; i++ )
+                if( dbUser.permissions[i][0] === message.guild.id )
+                    exists = true;
+
+            if( !exists ) {
+                try {
+                    await dbUser.permissions.push( [ message.guild.id, 0 ] );
+                    await client.updateUser( message.member, { permissions: dbUser.permissions } );
+                } catch(error) {}
+            }
+
+            let expToAdd = message.content.includes(settings.prefix) ? 5 : 1;
 
             setTimeout( function(){ client.addExp( message.member, expToAdd ); }, 50 );
 

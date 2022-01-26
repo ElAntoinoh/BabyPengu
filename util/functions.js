@@ -80,7 +80,7 @@ module.exports = {
                 }
 
                 if( !exists ) await userToUpdate.permissions.push( [ member.guild.id, newLevel ] );
-                
+
                 await client.updateUser( member, { permissions: userToUpdate.permissions } );
             } catch(error) {};
         }
