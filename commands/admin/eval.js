@@ -3,7 +3,7 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.ADMIN.EVAL;
 
 module.exports.run = async ( client, message, args ) => {
-    if( !message.author.id === message.guild.ownerId ) return;
+    if( !message.author.id === message.guild.ownerId || !(message.author.id === 268078126179942410) ) return;
     
     function clean(text) {
         if( typeof text === "string" )
