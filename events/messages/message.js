@@ -72,15 +72,13 @@ module.exports = {
         //#endregion
 
         //#region contrôle arguments
-        if( !command ) return message.channel.send(`Cette commande n'existe pas.`);
+        if( !command )
+            return message.channel.send(`Cette commande n'existe pas.`);
 
-        if( message.guild.roles.cache.find( role => role.id === settings.moderationRole ) ) { // S'il existe un role de modération
-            if( !command.help.public && !message.member.roles.cache.has( message.guild.roles.cache.find( role => role.id === settings.moderationRole ).id ) )
-                return message.channel.send("Cette commande est réservée aux modérateurs");
-
-            if( !command.help.modo && !message.member.permissions.has("ADMINISTRATOR") )
-                return message.channel.send("Cette commande est réservée aux administrateurs");
-        }
+        for( var i = 0; i < dbUser.permissions.length; i++ )
+            if( dbUser.permissions[i][0] === message.guild.id )
+                if( dbUser.permissions[i][1] < command.help.permLevel )
+                    return message.channel.send(`Niveau de permissions minimum pour utiliser cette commande : **${command.help.permLevel}**`);
 
         if( command.help.args && !args.length )
             return message.channel.send("Cette commande a besoin d'arguments");
@@ -88,8 +86,11 @@ module.exports = {
         if( command.help.needUser && !userMentioned )
             return message.channel.send("Cette commande a besoin de la mention d'un utilisateur");
 
-        if( ( userMentioned && !command.help.applicableOnModerator && message.guild.member(userMentioned).roles.cache.has( message.guild.roles.cache.find( role => role.name === settings.moderationRole ) ) ) && !( userMentioned && userMentioned === message.author ) )
-            return message.channel.send("Tu n'as pas le droit d'utiliser cette commande sur cet utilisateur.");
+        if( command.help.needUser && !command.help.applicableOnSuperior )
+            for( var i = 0; i < dbUser.permissions.length; i++ )
+                if( dbUser.permissions[i][0] === message.guild.id )
+                    if( dbUser.permissions[i][1] < await client.getUserPerms(message.guild.member(userMentioned)) )
+                        return message.channel.send("Tu n'as pas le droit d'utiliser cette commande sur cet utilisateur.");
         //#endregion
 
         //#region cooldown

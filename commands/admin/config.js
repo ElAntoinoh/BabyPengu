@@ -25,15 +25,6 @@ module.exports.run = async ( client, message, args, settings ) => {
             break;
         };
 
-        case "moderationRole": {
-            if(newSetting) {
-                await client.updateGuild( message.guild, { moderationRole: newSetting } );
-                return message.channel.send(`Role de modération mit à jour: \`${settings.moderationRole} -> ${newSetting}\``);
-            }
-            message.channel.send(`Role de modération actuel: \`${settings.moderationRole}\``);
-            break;
-        };
-
         case "welcomeMessage": {
             if(newSetting) {
                 await client.updateGuild( message.guild, { welcomeMessage: newSetting } );
@@ -43,7 +34,7 @@ module.exports.run = async ( client, message, args, settings ) => {
             break;
         };
 
-        default: return message.channel.send("Paramètres configurables: **logChannel**, **prefix**, **moderationRole**, **welcomeMessage**");
+        default: return message.channel.send("Paramètres configurables: **logChannel**, **prefix**, **welcomeMessage**");
     };
 
     await message.delete();

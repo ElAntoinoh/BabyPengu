@@ -36,10 +36,7 @@ module.exports.run = ( client, message, args, settings ) => {
             embed.addField("Alias", `${command.help.aliases.join(', ')}`, true);
 
         embed.addField("Utilisation", command.help.usage ? `${settings.prefix}${command.help.name} ${command.help.usage}` : `${settings.prefix}${command.help.name}`)
-             .addField(
-                "Autorisations",
-                command.help.public ? "publique" : command.help.modo ? "réservée aux modérateurs" : "réservée aux admins",
-        );
+             .addField("Niveau de permission requis", command.help.permLevel);
 
         return message.channel.send(embed);
     }

@@ -66,6 +66,16 @@ module.exports = {
             return data.updateOne(settings);
         };
 
+        client.getUserPerms = async( member ) => {
+            const user = await client.getUser( member );
+
+            for( var i = 0; i < user.permissions.length; i++ )
+                if( user.permissions[i][0].localeCompare(member.guild.id) == 0 )
+                    return user.permissions[i][1];
+            
+            return 0;
+        }
+
         client.setPermissionLevel = async( member, newLevel ) => {
             const userToUpdate = await client.getUser(member);
 
