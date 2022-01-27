@@ -247,7 +247,7 @@ const MESSAGES = {
 
             HELP: {
                 name: 'help',
-                aliases: ['help', 'h', 'aide'],
+                aliases: ['help', 'h', 'aide', 'aled', 'oskour'],
                 category: 'informations',
                 description: 'Renvoie une liste de commandes avec leurs informations.',
                 cooldown: 0,
@@ -291,10 +291,10 @@ const MESSAGES = {
                 description: "Renvoie des informations sur l'utilisateur.",
                 cooldown: 5,
                 usage: `<@user>`,
-                needUser: true,
+                needUser: false,
                 applicableOnSuperior: true,
                 permLevel: 0,
-                args: true,
+                args: false,
             },
         },
 
