@@ -17,6 +17,10 @@ const guildSchema = mongoose.Schema({
         "type": String,
         "default": defaults.welcomeMessage,
     },
+    welcomeChannel: {
+        "type": String,
+        "default": "",
+    },
 });
 
 module.exports = mongoose.model("Guild", guildSchema);

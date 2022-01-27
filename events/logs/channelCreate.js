@@ -15,6 +15,8 @@ module.exports = {
 
         const { executor } = LatestChannelCreated;
 
+        if( executor.bot ) return;
+
         const embed = new MessageEmbed()
             .setAuthor("Création d'un nouveau salon")
             .setColor("#0000FF")

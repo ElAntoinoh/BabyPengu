@@ -59,7 +59,21 @@ module.exports.run = async ( client, message, args, settings ) => {
             break;
         };
 
-        default: return message.channel.send("Paramètres configurables: **logChannel**, **prefix**, **welcomeMessage**");
+        case "welcomeChannel": {
+            if(newSetting) {
+                await client.updateGuild( message.guild, { welcomeChannel: newSetting } );
+                message.channel.send(`welcomeChannel mit à jour: \`${settings.welcomeChannel} -> ${newSetting}\``);
+
+                embed.setDescription(`Modification **welcomeChannel**: ${settings.welcomeChannel} -> ${newSetting}`)
+                     .setTimestamp();
+                
+                return logChannel.send(embed);
+            }
+            message.channel.send(`welcomeChannel actuel: \`${settings.welcomeChannel}\``);
+            break;
+        };
+
+        default: return message.channel.send("Paramètres configurables: **logChannel**, **prefix**, **welcomeMessage**, **welcomeChannel**");
     };
 
     await message.delete();

@@ -13,6 +13,8 @@ module.exports = {
 
         const { executor } = LatestChannelDeleted;
 
+        if( executor.bot ) return;
+
         const embed = new MessageEmbed()
             .setAuthor("Suppression d'un salon")
             .setColor("#0000FF")

@@ -1,8 +1,10 @@
+const { MessageEmbed } = require("discord.js");
+
 const { MESSAGES } = require("../../util/constants");
 
 module.exports.help = MESSAGES.COMMANDS.CHANNELS.NEWPRIVATECHANNEL;
 
-module.exports.run = ( client, message, args ) => {
+module.exports.run = async( client, message, args ) => {
     const categoryID = args[0];
     let nom = args.slice(1).join(" ");
 
@@ -25,6 +27,19 @@ module.exports.run = ( client, message, args ) => {
             },
         ],
     });
+
+    const categoryName = message.guild.channels.cache.find( c => c.id === categoryID ).name;
+
+    const embed = new MessageEmbed()
+        .setAuthor("Création d'un salon textuel")
+        .setColor("#0000FF")
+        .setDescription(`**Catégorie**: ${categoryName}\n**Nom**: ${nom}`)
+        .setTimestamp()
+        .setFooter( message.author.username, message.author.displayAvatarURL() );
+
+    let guild = await client.getGuild(message.guild);
+
+    message.guild.channels.cache.find( c => c.id = guild.logChannel ).send(embed);
 
     message.delete();
 };

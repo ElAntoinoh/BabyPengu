@@ -16,8 +16,8 @@ module.exports = {
             .setFooter("Un utilisateur a rejoint")
             .setTimestamp();
 
-        member.guild.channels.cache.find( c => c.id = settings.logChannel ).send(msg);
-        member.guild.channels.cache.find( c => c.id = settings.logChannel ).send(embed);
+        member.guild.channels.cache.find( c => c.id === settings.welcomeChannel ).send(msg);
+        member.guild.channels.cache.find( c => c.id === settings.logChannel     ).send(embed);
 
         const newUser = {
             userID:    member.id,
