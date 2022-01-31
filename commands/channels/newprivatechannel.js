@@ -19,11 +19,11 @@ module.exports.run = async( client, message, args ) => {
         permissionOverwrites: [
             {
                 id: message.guild.roles.everyone,
-                deny: ['VIEW_CHANNEL'] // channel non visible par everyone
+                deny: ['VIEW_CHANNEL', 'MANAGE_MESSAGES', 'MENTION_EVERYONE'], // channel non visible par everyone
             },
             {
                 id: message.author,
-                allow: ['VIEW_CHANNEL'] // channel visible par créateur
+                allow: ['VIEW_CHANNEL', 'MANAGE_MESSAGES', 'MANAGE_CHANNELS', 'MUTE_MEMBERS', 'DEAFEN_MEMBERS', 'MOVE_MEMBERS'] // channel visible par créateur
             },
         ],
     });

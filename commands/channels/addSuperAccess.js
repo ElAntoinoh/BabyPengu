@@ -1,6 +1,6 @@
 const { MESSAGES } = require("../../util/constants");
 
-module.exports.help = MESSAGES.COMMANDS.CHANNELS.ADDACCESS;
+module.exports.help = MESSAGES.COMMANDS.CHANNELS.ADDSUPERACCESS;
 
 module.exports.run = ( client, message, args ) => {
     const users = message.mentions.users;

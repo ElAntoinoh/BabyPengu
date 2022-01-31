@@ -55,6 +55,19 @@ const MESSAGES = {
                 args: true,
             },
 
+            ADDSUPERACCESS: {
+                name: 'addsuperaccess',
+                aliases: ['addsuperaccess'],
+                category: 'channels',
+                description: 'Authorise les utilisateurs mentionnés à modérer le salon courant.',
+                cooldown: 5,
+                usage: `<@user / @roles>`,
+                needUser: false,
+                applicableOnSuperior: true,
+                permLevel: 3,
+                args: true,
+            },
+
             DELETECHANNEL: {
                 name: 'deletechannel',
                 aliases: ['deletechannel'],
