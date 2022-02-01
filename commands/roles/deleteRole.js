@@ -12,4 +12,6 @@ module.exports.run = async ( client, message, args ) => {
     message.channel.send(`Rôle **${nom}** supprimé !`).then( msg => {
         setTimeout(() => msg.delete(), 3000)
     });
+
+    message.delete();
 };

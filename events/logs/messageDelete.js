@@ -13,14 +13,16 @@ module.exports = {
 
         const latestMessageDeleted = fetchGuildAuditLogs.entries.first();
 
-        const { executor } = latestMessageDeleted;
+        const { executor } = await latestMessageDeleted;
 
-        if( !message.author.bot && !message.content.startsWith(settings.prefix) )
+        if( !message.author ) return;
+
+        if( !message.author.bot && !executor.bot )
         {
             const embed = new MessageEmbed()
                 .setAuthor("Suppression d'un message")
                 .setColor("#800000")
-                .setDescription(`**Action**: suppression d'un message\n**Salon**: ${message.channel.name}\n**Auteur**: ${message.author}\n**Contenu**: ${message.content}`)
+                .setDescription(`**Salon**: ${message.channel}\n**Auteur**: ${message.author}\n**Contenu**: ${message.content}`)
                 .setTimestamp()
                 .setFooter( executor.username, executor.displayAvatarURL() );
 
