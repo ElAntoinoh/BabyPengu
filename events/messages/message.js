@@ -75,10 +75,11 @@ module.exports = {
         if( !command )
             return message.channel.send(`Cette commande n'existe pas.`);
 
-        for( var i = 0; i < dbUser.permissions.length; i++ )
-            if( dbUser.permissions[i][0] === message.guild.id )
-                if( dbUser.permissions[i][1] < command.help.permLevel )
-                    return message.channel.send(`Niveau de permissions minimum pour utiliser cette commande : **${command.help.permLevel}**`);
+        if( !message.author.bot )
+            for( var i = 0; i < dbUser.permissions.length; i++ )
+                if( dbUser.permissions[i][0] === message.guild.id )
+                    if( dbUser.permissions[i][1] < command.help.permLevel )
+                        return message.channel.send(`Niveau de permissions minimum pour utiliser cette commande : **${command.help.permLevel}**`);
 
         if( command.help.args && !args.length )
             return message.channel.send("Cette commande a besoin d'arguments");

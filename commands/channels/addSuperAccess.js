@@ -11,13 +11,23 @@ module.exports.run = ( client, message, args ) => {
     
     users.forEach( user => {
         channel.updateOverwrite( user, {
-            VIEW_CHANNEL: true,
+            VIEW_CHANNEL   : true,
+            MANAGE_MESSAGES: true,
+            MANAGE_CHANNELS: true,
+            MUTE_MEMBERS   : true,
+            DEAFEN_MEMBERS : true,
+            MOVE_MEMBERS   : true
         }).catch( console.error );
 
         if( voiceChannels.length != 0 ) {
             voiceChannels.forEach( c => {
                 c.updateOverwrite( user, {
-                    VIEW_CHANNEL: true
+                    VIEW_CHANNEL   : true,
+                    MANAGE_MESSAGES: true,
+                    MANAGE_CHANNELS: true,
+                    MUTE_MEMBERS   : true,
+                    DEAFEN_MEMBERS : true,
+                    MOVE_MEMBERS   : true
                 }).catch( console.error );
             });
         }
@@ -26,13 +36,23 @@ module.exports.run = ( client, message, args ) => {
     roles.forEach( role => {
         role.members.forEach( member => {
             channel.updateOverwrite( member.user, {
-                VIEW_CHANNEL: true,
+                VIEW_CHANNEL   : true,
+                MANAGE_MESSAGES: true,
+                MANAGE_CHANNELS: true,
+                MUTE_MEMBERS   : true,
+                DEAFEN_MEMBERS : true,
+                MOVE_MEMBERS   : true
             }).catch( console.error );
 
             if( voiceChannels.length != 0 ) {
                 voiceChannels.forEach( c => {
                     c.updateOverwrite( member.user, {
-                        VIEW_CHANNEL: true,
+                        VIEW_CHANNEL   : true,
+                        MANAGE_MESSAGES: true,
+                        MANAGE_CHANNELS: true,
+                        MUTE_MEMBERS   : true,
+                        DEAFEN_MEMBERS : true,
+                        MOVE_MEMBERS   : true
                     }).catch( console.error );
                 });
             }
