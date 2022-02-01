@@ -17,7 +17,7 @@ module.exports = {
 
         if( !message.author ) return;
 
-        if( !message.author.bot && !executor.bot )
+        if( !message.author.bot && !executor.bot && !message.content.startsWith(settings.prefix) )
         {
             const embed = new MessageEmbed()
                 .setAuthor("Suppression d'un message")

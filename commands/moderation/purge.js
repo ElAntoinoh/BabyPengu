@@ -5,6 +5,17 @@ const { MESSAGES } = require("../../util/constants");
 module.exports.help = MESSAGES.COMMANDS.MODERATION.PURGE;
 
 module.exports.run = async ( client, message, args ) => {
+    const guild = await client.getGuild(message.guild);
+
+    if( message.channel.id.localeCompare(guild.logChannel) == 0 ) {
+        message.delete();
+
+        return message.channel.send(`Suppression des logs non autorisée.`)
+            .then(msg => {
+                setTimeout(() => msg.delete(), 3000)
+            });
+    }
+
     if( isNaN( args[0] ) || args[0] < 1 ) return message.reply("il faut spécifier un nombre entier.");
 
     const messages = await message.channel.messages.fetch({
@@ -24,8 +35,6 @@ module.exports.run = async ( client, message, args ) => {
         .setColor("#0000FF")
         .setDescription(`**Action**: purge\n**Nombre de messages**: ${args[0]}\n**Salon**: ${message.channel}`)
     
-    let guild = await client.getGuild(message.guild);
-
     message.guild.channels.cache.find( c => c.id = guild.logChannel ).send(embed);
 
     message.channel.send(`✅ Suppression de ${args[0]} messages avec succès !`)
